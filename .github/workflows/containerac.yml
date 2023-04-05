@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Install tar
-        run: apt-get install -y tar # For Ubuntu
+        run: brew install tar
 
       - uses: actions/checkout@v2
 
