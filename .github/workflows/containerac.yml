@@ -15,7 +15,7 @@ jobs:
       - name: Check if pom.xml exists
         run: ls -la
       - name: Build with Maven
-        run: -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
+        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
 
 
   test:
@@ -33,4 +33,10 @@ jobs:
       - name: Start Appium Server
         run: appium &
       - name: Run Appium Test
-        run: -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
+        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v2
+        with:
+         name: Test Report
+         path: test-output/
+
