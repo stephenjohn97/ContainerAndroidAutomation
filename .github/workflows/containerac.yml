@@ -14,6 +14,9 @@ jobs:
           java-version: 11
       - name: Build with Maven
         run: mvn -B package --file /ContainerAndroidAutomation/AC_Android_BDD/pom.xml
+      - name: List files in directory
+        run: ls -R
+
 
   test:
     needs: build
