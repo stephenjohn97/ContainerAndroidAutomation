@@ -38,5 +38,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
          name: Test Report
-         path: test-output/
+         path: Extent-Report/Report
 
