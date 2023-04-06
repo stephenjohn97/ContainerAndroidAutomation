@@ -84,7 +84,7 @@ public class CommonUtilities extends BaseClass {
 	
 	}
 
-	public static void assertEqualsString(String actual, String expected, String name) {
+	public static void assertEqualsString(String actual, String expected) {
 		Assert.assertEquals(actual, expected);
 	}
 
@@ -106,7 +106,7 @@ public class CommonUtilities extends BaseClass {
 		Assert.assertEquals(input, getheadertext);
 	}
 
-	public static void softAssertEquals(WebElement element, String input, String name) {
+	public static void softAssertEquals(WebElement element, String input) {
 		String getheadertext = element.getText();
 		System.out.println(getheadertext);
 		SoftAssert sa = new SoftAssert();

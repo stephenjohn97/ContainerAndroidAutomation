@@ -50,7 +50,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Apr 05, 2023 01:22:34</span>
+			<span class='label blue darken-3 suite-start-time'>Apr 06, 2023 12:02:45</span>
 			</a>
 		</ul>
 	</div>
@@ -77,10 +77,10 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@OpenApp</a></li>
 					<li><a href='#'>@ValidLoginCheck</a></li>
-					<li><a href='#'>@AC_Android</a></li>
+					<li><a href='#'>@OpenApp</a></li>
 					<li><a href='#'>@InvalidLoginCheck</a></li>
+					<li><a href='#'>@AC_Android</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -160,14 +160,14 @@
                     <canvas id='grandchild-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='91%'>
-                    <span class='strong'>11</span> steps passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='66%'>
+                    <span class='strong'>8</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='8%'>
                     1</span> steps failed, 
-                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
-                    0</span> skipped, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='25%'>
+                    3</span> skipped, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> others
                 </div>
@@ -191,7 +191,7 @@
 				<li class='test displayed active has-leaf fail' status='fail' bdd='true' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>Login Page</span>
-						<span class='test-time'>Apr 05, 2023 01:22:35</span>
+						<span class='test-time'>Apr 06, 2023 12:02:46</span>
 						<span class='test-status right fail'>Fail</span>
 					</div>
 					<div class='test-content hide'>
@@ -204,7 +204,7 @@
 
 <div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 00 08.133</span>
+	<span class='duration right label'>00 00 10.215</span>
 	<div class="bdd-test">
 		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Open the AnswerConnect application</div>
 	</div>
@@ -222,7 +222,7 @@
 
 		</li>
 		<li test-id='4' class='node * Pass' status='Pass'>
-			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.afterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
+			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
 
 
 					<div class="node-step">Refer</div>
@@ -232,11 +232,11 @@
 		</li>
 	</ul>
 </div>
-<div class='scenario node' test-id='5' status='pass'>
+<div class='scenario node' test-id='5' status='fail'>
 
-	<span class='duration right label'>00 00 04.771</span>
+	<span class='duration right label'>00 00 02.104</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Check the Login fuunctionalites with invalid data</div>
+		<div class="scenario-name"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span> Scenario: Check the Login fuunctionalites with invalid data</div>
 	</div>
 	
 	
@@ -246,31 +246,39 @@
 		</div>
 	
 	<ul class='steps'>
-		<li test-id='6' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the invalid email ID</div>
+		<li test-id='6' class='node when Fail' status='Fail'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail())"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>When enter the invalid email ID</div>
 
 
-					<div class="node-step">***Entered: test@tests.com***</div>
+					<textarea disabled class="code-block">java.lang.IllegalArgumentException: Cannot find elements when the XPath is null.
+	at org.openqa.selenium.By$ByXPath.<init>(By.java:339)
+	at org.openqa.selenium.By.xpath(By.java:92)
+	at com.answerconnect.utilities.CommonUtilities.findXpath(CommonUtilities.java:122)
+	at com.answerconnect.testcases.SignIn.enterInvalidEmail(SignIn.java:12)
+	at com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail(SignInPage.java:23)
+	at ✽.enter the invalid email ID(file:///Users/stefan/Desktop/ContainerAndroidAutomation/src/test/resources/Features/AC_appium.feature:11)
+</textarea>
 		</li>
-		<li test-id='7' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidPassword())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the invalid password</div>
+		<li test-id='7' class='node when Skip' status='Skip'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidPassword())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>When enter the invalid password</div>
 
 
-					<div class="node-step">***Entered: test123123***</div>
+					<div class="node-step">Step skipped</div>
 		</li>
-		<li test-id='8' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.tapLogin())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And tap on login button</div>
+		<li test-id='8' class='node and Skip' status='Skip'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.tapLogin())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And tap on login button</div>
 
 
+					<div class="node-step">Step skipped</div>
 		</li>
-		<li test-id='9' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateLoginToast())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate invalid login toast message</div>
+		<li test-id='9' class='node then Skip' status='Skip'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateLoginToast())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then validate invalid login toast message</div>
 
 
-					<div class="node-step">***Invalid cred toast appeared successfully***</div>
+					<div class="node-step">Step skipped</div>
 		</li>
 		<li test-id='10' class='node * Pass' status='Pass'>
-			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.afterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
+			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
 
 
 					<div class="node-step">Refer</div>
@@ -280,11 +288,11 @@
 		</li>
 	</ul>
 </div>
-<div class='scenario node' test-id='11' status='fail'>
+<div class='scenario node' test-id='11' status='pass'>
 
-	<span class='duration right label'>00 00 33.536</span>
+	<span class='duration right label'>00 00 16.784</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span> Scenario: Check the Login functionalities with valid data</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Check the Login functionalities with valid data</div>
 	</div>
 	
 	
@@ -311,52 +319,14 @@
 
 
 		</li>
-		<li test-id='15' class='node then Fail' status='Fail'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateSignIn())"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>Then validate signIn page</div>
+		<li test-id='15' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateSignIn())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate signIn page</div>
 
 
-					<textarea disabled class="code-block">org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'MacBook-Pro.local', ip: 'fe80:0:0:0:874:1f0c:3afc:60b0%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '13.2.1', java.version: '11.0.14.1'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: com.anywhere.container.pres..., appPackage: com.answerconnect.mobile, autoAcceptAlerts: true, autoGrantPermissions: true, automationName: uiautomator2, databaseEnabled: false, desired: {appActivity: com.anywhere.container.pres..., appPackage: com.answerconnect.mobile, autoAcceptAlerts: true, autoGrantPermissions: true, automationName: uiautomator2, deviceName: 08301JEC200526, noReset: false, platformName: android, platformVersion: 13, skipUnlock: true}, deviceApiLevel: 33, deviceManufacturer: Google, deviceModel: Pixel 4a, deviceName: 08301JEC200526, deviceScreenDensity: 440, deviceScreenSize: 1080x2340, deviceUDID: 08301JEC200526, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: false, pixelRatio: 2.75, platform: LINUX, platformName: Android, platformVersion: 13, skipUnlock: true, statBarHeight: 136, takesScreenshot: true, viewportRect: {height: 2002, left: 0, top: 136, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
-*** Element info: {Using=xpath, value=//*[@text='Inbox']}
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElementByXPath(DefaultGenericMobileDriver.java:151)
-	at io.appium.java_client.AppiumDriver.findElementByXPath(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElementByXPath(AndroidDriver.java:1)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at com.answerconnect.utilities.CommonUtilities.findXpath(CommonUtilities.java:122)
-	at com.answerconnect.testcases.SignIn.validateSignIn(SignIn.java:50)
-	at com.answerconnect.stepdefinitions.SignInPage.validateSignIn(SignInPage.java:59)
-	at ✽.validate signIn page(file:///Users/stefan/Desktop/ContainerAndroidAutomation/src/test/resources/Features/AC_appium.feature:22)
-</textarea>
+					<div class="node-step">***Sign In validated successfully***</div>
 		</li>
 		<li test-id='16' class='node * Pass' status='Pass'>
-			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.afterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
+			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
 
 
 					<div class="node-step">Refer</div>
@@ -410,6 +380,39 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
+						<span class='category-name'>@ValidLoginCheck</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Apr 06, 2023 12:02:59</td>
+										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
 						<span class='category-name'>@OpenApp</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
@@ -432,7 +435,7 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 05, 2023 01:22:35</td>
+										<td>Apr 06, 2023 12:02:46</td>
 										<td class='linked' test-id='2'>Open the AnswerConnect application</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
@@ -443,7 +446,7 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@ValidLoginCheck</span>
+						<span class='category-name'>@InvalidLoginCheck</span>
 						<span class='category-status right'>
 						<span class='label fail'>1</span>
 						</span>
@@ -465,8 +468,8 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 05, 2023 01:22:48</td>
-										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
+										<td>Apr 06, 2023 12:02:56</td>
+										<td class='linked' test-id='5'>Check the Login fuunctionalites with invalid data</td>
 										<td><span class='test-status Fail'>Fail</span></td>
 									</tr>
 								</tbody>
@@ -499,51 +502,18 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 05, 2023 01:22:35</td>
+										<td>Apr 06, 2023 12:02:46</td>
 										<td class='linked' test-id='2'>Open the AnswerConnect application</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 									<tr>
-										<td>Apr 05, 2023 01:22:43</td>
+										<td>Apr 06, 2023 12:02:56</td>
 										<td class='linked' test-id='5'>Check the Login fuunctionalites with invalid data</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Apr 05, 2023 01:22:48</td>
-										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
 										<td><span class='test-status Fail'>Fail</span></td>
 									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@InvalidLoginCheck</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
 									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Apr 05, 2023 01:22:43</td>
-										<td class='linked' test-id='5'>Check the Login fuunctionalites with invalid data</td>
+										<td>Apr 06, 2023 12:02:59</td>
+										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -580,7 +550,7 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 			<ul id='exception-collection' class='exception-collection'>
 				<li class='exception displayed active'>
 					<div class='exception-heading'>
-						<span class='exception-name'>org.openqa.selenium.NoSuchElementException</span>
+						<span class='exception-name'>java.lang.IllegalArgumentException</span>
 						<span class='exception-count right'><span class='label red lighten-1 white-text'>1</span></span>
 					</div>
 					<div class='exception-content hide'>
@@ -595,47 +565,16 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 05, 2023 01:22:49</td>
-										<td class='linked' test-id='15'>Then validate signIn page</td>
+										<td>Apr 06, 2023 12:02:56</td>
+										<td class='linked' test-id='6'>When enter the invalid email ID</td>
 										<td>
-											<textarea disabled class="code-block">org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'MacBook-Pro.local', ip: 'fe80:0:0:0:874:1f0c:3afc:60b0%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '13.2.1', java.version: '11.0.14.1'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: com.anywhere.container.pres..., appPackage: com.answerconnect.mobile, autoAcceptAlerts: true, autoGrantPermissions: true, automationName: uiautomator2, databaseEnabled: false, desired: {appActivity: com.anywhere.container.pres..., appPackage: com.answerconnect.mobile, autoAcceptAlerts: true, autoGrantPermissions: true, automationName: uiautomator2, deviceName: 08301JEC200526, noReset: false, platformName: android, platformVersion: 13, skipUnlock: true}, deviceApiLevel: 33, deviceManufacturer: Google, deviceModel: Pixel 4a, deviceName: 08301JEC200526, deviceScreenDensity: 440, deviceScreenSize: 1080x2340, deviceUDID: 08301JEC200526, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, noReset: false, pixelRatio: 2.75, platform: LINUX, platformName: Android, platformVersion: 13, skipUnlock: true, statBarHeight: 136, takesScreenshot: true, viewportRect: {height: 2002, left: 0, top: 136, width: 1080}, warnings: {}, webStorageEnabled: false}
-Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
-*** Element info: {Using=xpath, value=//*[@text='Inbox']}
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElementByXPath(DefaultGenericMobileDriver.java:151)
-	at io.appium.java_client.AppiumDriver.findElementByXPath(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElementByXPath(AndroidDriver.java:1)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+											<textarea disabled class="code-block">java.lang.IllegalArgumentException: Cannot find elements when the XPath is null.
+	at org.openqa.selenium.By$ByXPath.<init>(By.java:339)
+	at org.openqa.selenium.By.xpath(By.java:92)
 	at com.answerconnect.utilities.CommonUtilities.findXpath(CommonUtilities.java:122)
-	at com.answerconnect.testcases.SignIn.validateSignIn(SignIn.java:50)
-	at com.answerconnect.stepdefinitions.SignInPage.validateSignIn(SignInPage.java:59)
-	at ✽.validate signIn page(file:///Users/stefan/Desktop/ContainerAndroidAutomation/src/test/resources/Features/AC_appium.feature:22)
+	at com.answerconnect.testcases.SignIn.enterInvalidEmail(SignIn.java:12)
+	at com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail(SignInPage.java:23)
+	at ✽.enter the invalid email ID(file:///Users/stefan/Desktop/ContainerAndroidAutomation/src/test/resources/Features/AC_appium.feature:11)
 </textarea>
 										</td>
 									</tr>
@@ -679,19 +618,19 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Apr 05, 2023 01:22:34</div>
+					<div class='panel-lead'>Apr 06, 2023 12:02:45</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Apr 05, 2023 01:23:22</div>
+			 		<div class='panel-lead'>Apr 06, 2023 12:03:16</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 00 47.304</div>
+					<div class='panel-lead'>00 00 30.701</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -739,6 +678,15 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 							<th>Passed %</th>
 						</tr>
 						<tr>
+							<td>@ValidLoginCheck</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
 							<td>@OpenApp</td>
 							<td>1</td>
 							<td>0</td>
@@ -748,7 +696,7 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 							</td>
 						</tr>
 						<tr>
-							<td>@ValidLoginCheck</td>
+							<td>@InvalidLoginCheck</td>
 							<td>0</td>
 							<td>1</td>
 							<td>0</td>
@@ -763,15 +711,6 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 							<td>0</td>
 							<td>
 									66.667%
-							</td>
-						</tr>
-						<tr>
-							<td>@InvalidLoginCheck</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
 							</td>
 						</tr>
 					</table>
@@ -801,19 +740,19 @@ Session ID: bd25ffeb-c298-4915-b433-6d4d3e5992e2
 				skipChild: 0,
 				infoChild: 0,
 				grandChildCount: 12,
-				passGrandChild: 11,
+				passGrandChild: 8,
 				failGrandChild: 1,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
 				warningGrandChild: 0,
-				skipGrandChild: 0,
+				skipGrandChild: 3,
 				infoGrandChild: 0,
 			};
 			</script>
 		
 		<script>
 			var timeline = {
-			        "Login Page":46.467
+			        "Login Page":29.137
 			};
 		</script>
 		

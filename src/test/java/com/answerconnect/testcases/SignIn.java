@@ -9,7 +9,7 @@ public class SignIn extends ExcelRead {
 // ***INVALID SCENARIO***
 	public static void enterInvalidEmail() {
 		clearField(findXpath("emailField"));
-		sendKeys(findXpath("emailField"), invalidEmail);
+		sendKeys(findXpath("emailFied"), invalidEmail);
 		log("Entered: " + invalidEmail);
 	}
 
