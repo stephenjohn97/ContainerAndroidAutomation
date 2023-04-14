@@ -7,7 +7,7 @@ Feature: Login Page
     Given open the applicaton
 
   @InvalidLoginCheck
-  Scenario: Check the Login fuunctionalites with invalid data
+  Scenario: Check the Login functionalites with invalid data
     When enter the invalid email ID
     When enter the invalid password
     And tap on login button

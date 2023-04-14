@@ -49,11 +49,6 @@ public class SignInPage {
 		SignIn.tapLoginButton();
 	}
 
-	/*
-	 * @And("tap on skip button") public void tapSkip() throws InterruptedException
-	 * { SignIn.tapSkipButton(); }
-	 */
-
 	@Then("validate signIn page")
 	public void validateSignIn() throws IOException {
 		SignIn.validateSignIn();

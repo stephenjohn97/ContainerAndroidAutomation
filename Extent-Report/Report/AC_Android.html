@@ -40,7 +40,6 @@
 		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
 			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
 			<li class='waves-effect'><a href='#!' view='category-view' onclick="configureView(1)"><i class='material-icons'>label_outline</i></a></li>
-			<li class='waves-effect'><a href='#!' view='exception-view' onclick="configureView(2)"><i class='material-icons'>bug_report</i></a></li>
 			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
 		</ul>
 		<!-- report name -->
@@ -50,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Apr 06, 2023 12:02:45</span>
+			<span class='label blue darken-3 suite-start-time'>Apr 14, 2023 01:45:19</span>
 			</a>
 		</ul>
 	</div>
@@ -65,7 +64,7 @@
 				<i class='material-icons'>warning</i> Status
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
-										<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
+										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -77,10 +76,10 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
+					<li><a href='#'>@AC_Android</a></li>
 					<li><a href='#'>@ValidLoginCheck</a></li>
 					<li><a href='#'>@OpenApp</a></li>
 					<li><a href='#'>@InvalidLoginCheck</a></li>
-					<li><a href='#'>@AC_Android</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -122,12 +121,12 @@
                     <canvas id='parent-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='$0%'>
-                    <span class='strong'>0</span> features passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='$100%'>
+                    <span class='strong'>1</span> features passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='100%'>
-                    1</span> features failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> features failed, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> skipped
                 </div>
@@ -140,12 +139,12 @@
                     <canvas id='child-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='66%'>
-                    <span class='strong'>2</span> scenarios passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'>
+                    <span class='strong'>3</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='33%'>
-                    1</span> scenarios failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> scenarios failed, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> skipped, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -160,14 +159,14 @@
                     <canvas id='grandchild-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='66%'>
-                    <span class='strong'>8</span> steps passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'>
+                    <span class='strong'>12</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='8%'>
-                    1</span> steps failed, 
-                    <span class='strong tooltipped' data-position='top' data-tooltip='25%'>
-                    3</span> skipped, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> steps failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> skipped, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> others
                 </div>
@@ -188,11 +187,11 @@
 	<div class='subview-left left'>
 		<div class='view-summary'>
 			<ul id='test-collection' class='test-collection'>
-				<li class='test displayed active has-leaf fail' status='fail' bdd='true' test-id='1'>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>Login Page</span>
-						<span class='test-time'>Apr 06, 2023 12:02:46</span>
-						<span class='test-status right fail'>Fail</span>
+						<span class='test-time'>Apr 14, 2023 01:45:20</span>
+						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class="sr-filters bdd-filters">
@@ -204,7 +203,7 @@
 
 <div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 00 10.215</span>
+	<span class='duration right label'>00 00 11.798</span>
 	<div class="bdd-test">
 		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Open the AnswerConnect application</div>
 	</div>
@@ -232,11 +231,11 @@
 		</li>
 	</ul>
 </div>
-<div class='scenario node' test-id='5' status='fail'>
+<div class='scenario node' test-id='5' status='pass'>
 
-	<span class='duration right label'>00 00 02.104</span>
+	<span class='duration right label'>00 00 05.119</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span> Scenario: Check the Login fuunctionalites with invalid data</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Check the Login functionalites with invalid data</div>
 	</div>
 	
 	
@@ -246,36 +245,28 @@
 		</div>
 	
 	<ul class='steps'>
-		<li test-id='6' class='node when Fail' status='Fail'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail())"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>When enter the invalid email ID</div>
+		<li test-id='6' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the invalid email ID</div>
 
 
-					<textarea disabled class="code-block">java.lang.IllegalArgumentException: Cannot find elements when the XPath is null.
-	at org.openqa.selenium.By$ByXPath.<init>(By.java:339)
-	at org.openqa.selenium.By.xpath(By.java:92)
-	at com.answerconnect.utilities.CommonUtilities.findXpath(CommonUtilities.java:122)
-	at com.answerconnect.testcases.SignIn.enterInvalidEmail(SignIn.java:12)
-	at com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail(SignInPage.java:23)
-	at ✽.enter the invalid email ID(file:///Users/stefan/Desktop/ContainerAndroidAutomation/src/test/resources/Features/AC_appium.feature:11)
-</textarea>
+					<div class="node-step">***Entered: invalid@invalid.cred***</div>
 		</li>
-		<li test-id='7' class='node when Skip' status='Skip'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidPassword())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>When enter the invalid password</div>
+		<li test-id='7' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidPassword())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the invalid password</div>
 
 
-					<div class="node-step">Step skipped</div>
+					<div class="node-step">***Entered: test123123***</div>
 		</li>
-		<li test-id='8' class='node and Skip' status='Skip'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.tapLogin())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And tap on login button</div>
+		<li test-id='8' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.tapLogin())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And tap on login button</div>
 
 
-					<div class="node-step">Step skipped</div>
 		</li>
-		<li test-id='9' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateLoginToast())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then validate invalid login toast message</div>
+		<li test-id='9' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateLoginToast())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate invalid login toast message</div>
 
 
-					<div class="node-step">Step skipped</div>
+					<div class="node-step">***Invalid cred toast appeared successfully***</div>
 		</li>
 		<li test-id='10' class='node * Pass' status='Pass'>
 			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
@@ -290,7 +281,7 @@
 </div>
 <div class='scenario node' test-id='11' status='pass'>
 
-	<span class='duration right label'>00 00 16.784</span>
+	<span class='duration right label'>00 00 18.523</span>
 	<div class="bdd-test">
 		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Check the Login functionalities with valid data</div>
 	</div>
@@ -380,6 +371,49 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
+						<span class='category-name'>@AC_Android</span>
+						<span class='category-status right'>
+						<span class='label pass'>3</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 3</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Apr 14, 2023 01:45:20</td>
+										<td class='linked' test-id='2'>Open the AnswerConnect application</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+									<tr>
+										<td>Apr 14, 2023 01:45:32</td>
+										<td class='linked' test-id='5'>Check the Login functionalites with invalid data</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+									<tr>
+										<td>Apr 14, 2023 01:45:37</td>
+										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
 						<span class='category-name'>@ValidLoginCheck</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
@@ -402,7 +436,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 06, 2023 12:02:59</td>
+										<td>Apr 14, 2023 01:45:37</td>
 										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
@@ -435,7 +469,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 06, 2023 12:02:46</td>
+										<td>Apr 14, 2023 01:45:20</td>
 										<td class='linked' test-id='2'>Open the AnswerConnect application</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
@@ -448,13 +482,13 @@
 					<div class='category-heading'>
 						<span class='category-name'>@InvalidLoginCheck</span>
 						<span class='category-status right'>
-						<span class='label fail'>1</span>
+						<span class='label pass'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
 							
-							<span status="fail" class='label red lighten-1 white-text'>Failed: 1</span>
 							
 						</div>
 						<div class='category-tests'>
@@ -468,52 +502,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 06, 2023 12:02:56</td>
-										<td class='linked' test-id='5'>Check the Login fuunctionalites with invalid data</td>
-										<td><span class='test-status Fail'>Fail</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@AC_Android</span>
-						<span class='category-status right'>
-						<span class='label pass'>2</span>
-						<span class='label fail'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
-							<span status="fail" class='label red lighten-1 white-text'>Failed: 1</span>
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Apr 06, 2023 12:02:46</td>
-										<td class='linked' test-id='2'>Open the AnswerConnect application</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Apr 06, 2023 12:02:56</td>
-										<td class='linked' test-id='5'>Check the Login fuunctionalites with invalid data</td>
-										<td><span class='test-status Fail'>Fail</span></td>
-									</tr>
-									<tr>
-										<td>Apr 06, 2023 12:02:59</td>
-										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
+										<td>Apr 14, 2023 01:45:32</td>
+										<td class='linked' test-id='5'>Check the Login functionalites with invalid data</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -530,69 +520,7 @@
 		</div>
 	</div>
 </div>
-<!-- category view --><div id='exception-view' class='view hide'>
-	<section id='controls'>
-		<div class='controls grey lighten-4'>
-			<!-- search -->
-			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
-				<a href="#" class='search-div'>
-				<i class='material-icons'>search</i> Search
-				</a>
-				<div class='input-field left hide'>
-					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
-				</div>
-			</div>
-			<!-- search -->
-		</div>
-	</section>
-	<div class='subview-left left'>
-		<div class='view-summary'>
-			<ul id='exception-collection' class='exception-collection'>
-				<li class='exception displayed active'>
-					<div class='exception-heading'>
-						<span class='exception-name'>java.lang.IllegalArgumentException</span>
-						<span class='exception-count right'><span class='label red lighten-1 white-text'>1</span></span>
-					</div>
-					<div class='exception-content hide'>
-						<div class='exception-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>StackTrace</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Apr 06, 2023 12:02:56</td>
-										<td class='linked' test-id='6'>When enter the invalid email ID</td>
-										<td>
-											<textarea disabled class="code-block">java.lang.IllegalArgumentException: Cannot find elements when the XPath is null.
-	at org.openqa.selenium.By$ByXPath.<init>(By.java:339)
-	at org.openqa.selenium.By.xpath(By.java:92)
-	at com.answerconnect.utilities.CommonUtilities.findXpath(CommonUtilities.java:122)
-	at com.answerconnect.testcases.SignIn.enterInvalidEmail(SignIn.java:12)
-	at com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail(SignInPage.java:23)
-	at ✽.enter the invalid email ID(file:///Users/stefan/Desktop/ContainerAndroidAutomation/src/test/resources/Features/AC_appium.feature:11)
-</textarea>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class='subview-right left'>
-		<div class='view-summary'>
-			<h5 class='exception-name'></h5>
-		</div>
-	</div>
-</div>
-<!-- exception view --><div id='dashboard-view' class='view hide'>
+<!-- category view --><div id='dashboard-view' class='view hide'>
 	<div class='card-panel transparent np-v'>
 		<h5>Dashboard</h5>
 
@@ -618,19 +546,19 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Apr 06, 2023 12:02:45</div>
+					<div class='panel-lead'>Apr 14, 2023 01:45:19</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Apr 06, 2023 12:03:16</div>
+			 		<div class='panel-lead'>Apr 14, 2023 01:45:56</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 00 30.701</div>
+					<div class='panel-lead'>00 00 36.943</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -678,6 +606,15 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
+							<td>@AC_Android</td>
+							<td>3</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
 							<td>@ValidLoginCheck</td>
 							<td>1</td>
 							<td>0</td>
@@ -697,20 +634,11 @@
 						</tr>
 						<tr>
 							<td>@InvalidLoginCheck</td>
-							<td>0</td>
 							<td>1</td>
 							<td>0</td>
-							<td>
-									0%
-							</td>
-						</tr>
-						<tr>
-							<td>@AC_Android</td>
-							<td>2</td>
-							<td>1</td>
 							<td>0</td>
 							<td>
-									66.667%
+									100%
 							</td>
 						</tr>
 					</table>
@@ -725,34 +653,34 @@
 		<script>
 			var statusGroup = {
                 parentCount: 1,
-				passParent: 0,
-				failParent: 1,
+				passParent: 1,
+				failParent: 0,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
 				childCount: 3,
-				passChild: 2,
-				failChild: 1,
+				passChild: 3,
+				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
 				grandChildCount: 12,
-				passGrandChild: 8,
-				failGrandChild: 1,
+				passGrandChild: 12,
+				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
 				warningGrandChild: 0,
-				skipGrandChild: 3,
+				skipGrandChild: 0,
 				infoGrandChild: 0,
 			};
 			</script>
 		
 		<script>
 			var timeline = {
-			        "Login Page":29.137
+			        "Login Page":35.469
 			};
 		</script>
 		

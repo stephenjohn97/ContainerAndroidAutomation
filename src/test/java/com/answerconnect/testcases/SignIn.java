@@ -2,14 +2,18 @@ package com.answerconnect.testcases;
 
 import java.io.IOException;
 
-import com.answerconnect.base.ExcelRead;
+import com.answerconnect.utilities.CommonUtilities;
 
-public class SignIn extends ExcelRead {
+public class SignIn extends CommonUtilities {
+
+	static String validEmail = getData("validEmail");
+	static String invalidEmail = getData("invalidEmail");
+	static String password = getData("password");
 
 // ***INVALID SCENARIO***
 	public static void enterInvalidEmail() {
 		clearField(findXpath("emailField"));
-		sendKeys(findXpath("emailFied"), invalidEmail);
+		sendKeys(findXpath("emailField"), invalidEmail);
 		log("Entered: " + invalidEmail);
 	}
 
@@ -40,11 +44,6 @@ public class SignIn extends ExcelRead {
 	public static void tapLoginButton() throws InterruptedException {
 		tapOn("Login button", findAccID("loginButton"));
 	}
-
-	/*
-	 * public static void tapSkipButton() throws InterruptedException {
-	 * wait(findID("skipTourPage")); tapOn("Skip", findID("skipTourPage")); }
-	 */
 
 	public static void validateSignIn() throws IOException {
 		assertEquals(findXpath("inboxTab"), "Inbox");

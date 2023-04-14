@@ -51,6 +51,10 @@ public class AfterScenario extends CommonUtilities {
 		if (extent != null) {
 			extent.flush();
 		}
+		if (server() != null) {
+			server().stop();
+		}
+
 		Desktop.getDesktop().browse(new File("Extent-Report/Report/AC_Android.html").toURI());
 	}
 

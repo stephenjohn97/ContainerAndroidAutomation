@@ -1,43 +1,78 @@
 package com.answerconnect.base;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import com.answerconnect.utilities.CommonUtilities;
+public class ExcelRead {
 
-public class ExcelRead extends CommonUtilities {
+	public static final String FILE_NAME = "AndroidSheet.xlsx";
 
-	public static XSSFWorkbook workbook;
-	public static XSSFSheet sheet;
-	public static XSSFRow row;
-	public static XSSFCell cell;
-	public static FileInputStream inputStream;
-
-	public static String readExcelSheet(int rownum, int colnum) {
+	public static String getData(String key) {
+		FileInputStream inputStream = null;
+		Workbook workbook = null;
+		String value = null;
 		try {
-			inputStream = new FileInputStream(
-					"/Users/stefan/Desktop/Answering Service /AC/ANCT_Android_BDD/AC_Cred.xlsx");
-			workbook = new XSSFWorkbook(inputStream);
-			sheet = workbook.getSheet("Sheet1");
-			row = sheet.getRow(rownum);
-			cell = row.getCell(colnum);
-			if (cell == null) {
-				return "";
+			inputStream = new FileInputStream(FILE_NAME);
+			workbook = WorkbookFactory.create(inputStream);
+			int sheetCount = workbook.getNumberOfSheets();
+			for (int s = 0; s < sheetCount; s++) {
+				Sheet sheet = workbook.getSheetAt(s);
+				int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+				for (int i = 0; i <= rowCount; i++) {
+					Row row = sheet.getRow(i);
+					if (row == null) {
+						continue;
+					}
+					Cell keyCell = row.getCell(0);
+					if (keyCell == null || keyCell.getCellType() == CellType.BLANK) {
+						continue;
+					}
+					if (keyCell.getStringCellValue().equals(key)) {
+						Cell valueCell = row.getCell(1);
+						if (valueCell == null || valueCell.getCellType() == CellType.BLANK) {
+							continue;
+						} else if (valueCell.getCellType() == CellType.NUMERIC) {
+							DataFormatter formatter = new DataFormatter();
+							value = formatter.formatCellValue(valueCell);
+						} else {
+							value = valueCell.getStringCellValue();
+						}
+						break;
+					}
+				}
+				if (value != null) {
+					break;
+				}
 			}
-			return cell.getStringCellValue();
-
-		} catch (Exception e) {
-			System.out.println("In the Catch Block:" + e);
-			return "Exception Occured";
+			if (value == null) {
+				throw new RuntimeException("Key " + key + " is not found in any sheet");
+			}
+		} catch (IOException e) {
+			System.err.println("Error reading data from the file: " + e.getMessage());
+		} finally {
+			if (workbook != null) {
+				try {
+					workbook.close();
+				} catch (IOException e) {
+					System.err.println("Error closing the workbook: " + e.getMessage());
+				}
+			}
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					System.err.println("Error closing the inputstream: " + e.getMessage());
+				}
+			}
 		}
+		return value;
 	}
-
-	public static String validEmail = readExcelSheet(1, 1);
-	public static String invalidEmail = readExcelSheet(3, 1);
-	public static String password = readExcelSheet(2, 1);
-
 }
