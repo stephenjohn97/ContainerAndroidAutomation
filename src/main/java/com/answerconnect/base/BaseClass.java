@@ -55,6 +55,7 @@ public class BaseClass extends ExcelRead {
 	public static void loadPropertyFiles() throws IOException {
 		input = new FileInputStream("./src/main/resources/Locators/signIn.properties");
 		property.load(input);
+		System.out.println();
 
 	}
 
