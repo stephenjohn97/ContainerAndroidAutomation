@@ -18,7 +18,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
 
-
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -33,6 +32,14 @@ jobs:
         run: npm install -g appium
       - name: Start Appium Server
         run: appium &
+      - name: Start Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: Nexus_5X_API_29
+      - name: Install APK
+        run: adb install src/main/resources/AC.apk
       - name: Run Appium Test
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Upload Test Report
@@ -40,4 +47,3 @@ jobs:
         with:
          name: Test Report
          path: Extent-Report/Report
-
