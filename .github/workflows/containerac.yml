@@ -34,7 +34,7 @@ jobs:
       - name: Connect to Android device
         run: adb devices
         env:
-          ANDROID_SERIAL: ${{ 08301JEC200526 }}
+          ANDROID_SERIAL: 08301JEC200526
       - name: Install APK file on device
         run: adb install src/main/resources/AC.apk
       - name: Install Appium
