@@ -34,7 +34,7 @@ jobs:
       - name: Connect to Android device
         run: adb devices
         env:
-          ANDROID_SERIAL: 192.168.1.3:5555
+          ANDROID_SERIAL: 08301JEC200526
       - name: Install APK file on device
         run: adb install /Users/stefan/Desktop/ContainerAndroidAutomation/src/main/resources/AC.apk
       - name: Install Appium
