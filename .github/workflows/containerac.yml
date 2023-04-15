@@ -36,7 +36,7 @@ jobs:
         env:
           ANDROID_SERIAL: 08301JEC200526
       - name: Install APK file on device
-        run: adb install /Users/stefan/Desktop/ContainerAndroidAutomation/src/main/resources/AC.apk
+        run: adb install Users/stefan/Desktop/ContainerAndroidAutomation/src/main/resources/AC.apk
       - name: Install Appium
         run: npm install -g appium
       - name: Start Appium Server
