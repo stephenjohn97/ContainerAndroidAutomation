@@ -34,7 +34,7 @@ jobs:
       JAVA_HOME: /usr/local/openjdk-11
       ANDROID_HOME: /usr/local/android-sdk
       ANDROID_SDK_ROOT: /usr/local/android-sdk
-      PATH: ${{ env.PATH }}:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
+      PATH: $PATH:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
       APPIUM_PORT: 4723
       ANDROID_SERIAL: ${{ secrets.ANDROID_SERIAL }}
     steps:
