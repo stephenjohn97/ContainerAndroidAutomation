@@ -18,10 +18,25 @@ jobs:
         run: ls -la
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
+      - name: Install APK
+        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r AC.apk
+
 
   test:
     needs: build
     runs-on: ubuntu-latest
+    container:
+      image: appium/appium
+      options: --env APPIUM_PORT=0
+      ports:
+        - ${{ job.container.ports.appium }}
+    env:
+      JAVA_HOME: /usr/local/openjdk-11
+      ANDROID_HOME: /usr/local/android-sdk
+      ANDROID_SDK_ROOT: /usr/local/android-sdk
+      PATH: ${{ env.PATH }}:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
+      APPIUM_PORT: ${{ job.container.ports.appium }}
+      ANDROID_SERIAL: ${{ secrets.ANDROID_SERIAL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -33,11 +48,9 @@ jobs:
         run: sudo apt-get install -y adb
       - name: Connect to Android device
         run: |
-          adb start-server
-          sleep 5
           adb devices
-          adb -s ${{ secrets.ANDROID_SERIAL }} wait-for-device
-          adb -s ${{ secrets.ANDROID_SERIAL }} shell input keyevent 82 &
+          adb -s $ANDROID_SERIAL wait-for-device
+          adb -s $ANDROID_SERIAL shell input keyevent 82 &
         env:
           ANDROID_SERIAL: ${{ secrets.ANDROID_SERIAL }}
       - name: Install app dependencies
@@ -45,12 +58,10 @@ jobs:
           npm install -g appium
           npm install
       - name: Start Appium server
-        run: appium &
+        run: appium -p $APPIUM_PORT &
       - name: Wait for Appium to start
         run: |
-         timeout 60s bash -c 'until [[ $(lsof -t -i :<port_number>) ]]; do sleep 1; done'
-      - name: Install APK
-        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r AC.apk
+          timeout 60s bash -c 'until echo > /dev/tcp/127.0.0.1/$APPIUM_PORT; do sleep 1; done'
       - name: Run Appium tests
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test --file pom.xml
       - name: Archive test results
