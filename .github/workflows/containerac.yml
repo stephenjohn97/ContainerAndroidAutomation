@@ -21,7 +21,7 @@ jobs:
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
-        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r /Users/stefan/Desktop/ContainerAndroidAutomation/src/main/resources/AC.apk
+        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r /Users/stefan/Desktop/ContainerAndroidAutomation/AC.apk
 
 
   test:
