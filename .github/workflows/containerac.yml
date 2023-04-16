@@ -45,7 +45,7 @@ jobs:
         run: sudo apt-get install -y adb
       - name: Connect to Android device
         run: |
-          adb devices
+          sudo adb devices
           adb -s 192.168.1.4:5555 wait-for-device
           adb -s 192.168.1.4:5555 shell input keyevent 82 &
         env:
