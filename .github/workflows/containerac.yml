@@ -21,7 +21,15 @@ jobs:
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
-        run: adb -s RZ8R219L7QP install -r /Users/stefan/Desktop/ContainerAndroidAutomation/AC-0417.apk
+        run: |
+          device_id=$(adb devices | awk 'FNR == 2 {print $1}')
+          apk_file_path="/Users/stefan/Desktop/ContainerAndroidAutomation/AC.apk"
+          package_name=$(aapt dump badging "$apk_file_path" | awk -v FS="'" '/package: name=/{print $2}')
+          if [[ $(adb -s $device_id shell pm list packages $package_name) ]]; then
+            echo "APK is already installed on device"
+          else
+            adb -s $device_id install "$apk_file_path"
+          fi
 
 
   test:
@@ -44,10 +52,10 @@ jobs:
       - name: Connect to Android device
         run: |
           adb devices
-          adb -s RZ8R219L7QP wait-for-device
-          adb -s RZ8R219L7QP shell input keyevent 82 &
+          adb -s 08301JEC200526 wait-for-device
+          adb -s 08301JEC200526 shell input keyevent 82 &
         env:
-          YOUR_DEVICE_SERIAL: RZ8R219L7QP
+          YOUR_DEVICE_SERIAL: 08301JEC200526
       - name: Install app dependencies
         run: |
           npm install -g appium
