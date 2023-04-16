@@ -21,7 +21,7 @@ jobs:
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
-        run: adb -s 08301JEC200526 install -r ${{ github.workspace }}/AC.apk
+        run: adb -s 08301JEC200526 install -r /Users/stefan/Desktop/ContainerAndroidAutomation/AC.apk
 
 
   test:
@@ -31,7 +31,7 @@ jobs:
       JAVA_HOME: ${{ secrets.JAVA_HOME }}
       ANDROID_HOME: ${{ secrets.ANDROID_HOME }}
       ANDROID_SDK_ROOT: ${{ secrets.ANDROID_SDK_ROOT }}
-      PATH: ${{ github.workspace }}:/usr/local/openjdk-11/bin:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
+      PATH: /Users/stefan/Desktop/ContainerAndroidAutomation/AC.apk:/usr/local/openjdk-11/bin:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
