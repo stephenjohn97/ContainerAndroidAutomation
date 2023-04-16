@@ -20,8 +20,10 @@ jobs:
         run: sudo apt-get install -y adb
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
+      - name: Copy APK to artifacts directory
+        run: cp target/AC.apk ${{ github.workspace }}/artifacts
       - name: Install APK
-        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r /Users/stefan/Desktop/ContainerAndroidAutomation/AC.apk
+        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r ${{ github.workspace }}/artifacts/AC.apk
 
 
   test:
@@ -31,7 +33,7 @@ jobs:
       JAVA_HOME: /usr/local/openjdk-11
       ANDROID_HOME: /usr/local/android-sdk
       ANDROID_SDK_ROOT: /usr/local/android-sdk
-      PATH: $PATH:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
+      PATH: ${{ env.PATH }}:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -53,4 +55,16 @@ jobs:
           npm install -g appium
           npm install
       - name: Start Appium server
-        run: app
+        run: appium -p ${{ env.APPIUM_PORT }} &
+        env:
+          APPIUM_PORT: 4723
+      - name: Wait for Appium to start
+        run: |
+          timeout 60s bash -c 'until echo > /dev/tcp/127.0.0.1/$APPIUM_PORT; do sleep 1; done'
+      - name: Run Appium tests
+        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test --file pom.xml
+      - name: Archive test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: Extent-Report/Report/
