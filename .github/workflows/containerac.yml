@@ -20,10 +20,8 @@ jobs:
         run: sudo apt-get install -y adb
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
-      - name: Copy APK to artifacts directory
-        run: cp target/AC.apk ${{ github.workspace }}/artifacts
       - name: Install APK
-        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r ${{ github.workspace }}/artifacts/AC.apk
+        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r ${{ github.workspace }}/AC.apk
 
 
   test:
@@ -33,7 +31,7 @@ jobs:
       JAVA_HOME: /usr/local/openjdk-11
       ANDROID_HOME: /usr/local/android-sdk
       ANDROID_SDK_ROOT: /usr/local/android-sdk
-      PATH: ${{ env.PATH }}:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
+      PATH: ${{ github.workspace }}:/usr/local/openjdk-11/bin:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
