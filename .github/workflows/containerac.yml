@@ -28,9 +28,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      JAVA_HOME: /usr/local/openjdk-11
-      ANDROID_HOME: /usr/local/android-sdk
-      ANDROID_SDK_ROOT: /usr/local/android-sdk
+      JAVA_HOME: ${{ secrets.JAVA_HOME }}
+      ANDROID_HOME: ${{ secrets.ANDROID_HOME }}
+      ANDROID_SDK_ROOT: ${{ secrets.ANDROID_SDK_ROOT }}
       PATH: ${{ github.workspace }}:/usr/local/openjdk-11/bin:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
     steps:
       - name: Checkout code
