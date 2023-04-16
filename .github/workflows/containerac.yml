@@ -28,10 +28,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      JAVA_HOME: /usr/local/openjdk-11
-      ANDROID_HOME: /usr/local/android-sdk
-      ANDROID_SDK_ROOT: /usr/local/android-sdk
-      PATH: ${{ github.workspace }}:/usr/local/openjdk-11/bin:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
+      JAVA_HOME: /usr/libexec/java_home
+      ANDROID_HOME: /users/stefan/Library/Android/sdk
+      ANDROID_SDK_ROOT: /Library/Android/sdk
+      PATH: ${{ github.workspace }}:/usr/libexec/java_home:/users/stefan/Library/Android/sdk/tools:/users/stefan/Library/Android/sdk/platform-tools
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
