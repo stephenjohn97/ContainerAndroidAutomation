@@ -22,9 +22,9 @@ jobs:
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
         run: |
-          adb devices
-          adb -s 192.168.1.4:5555 wait-for-device
-          adb -s 192.168.1.4:5555 install -r ${{ github.workspace }}/AC.apk
+          sudo adb devices
+          adb -s 08301JEC200526	 wait-for-device
+          adb -s 08301JEC200526	 install -r ${{ github.workspace }}/AC.apk
 
   test:
     needs: build
@@ -46,10 +46,10 @@ jobs:
       - name: Connect to Android device
         run: |
           sudo adb devices
-          adb -s 192.168.1.4:5555 wait-for-device
-          adb -s 192.168.1.4:5555 shell input keyevent 82 &
+          adb -s 08301JEC200526	 wait-for-device
+          adb -s 08301JEC200526	 shell input keyevent 82 &
         env:
-          YOUR_DEVICE_SERIAL: 192.168.1.4:5555
+          YOUR_DEVICE_SERIAL: 08301JEC200526	
       - name: Install app dependencies
         run: |
           npm install -g appium
