@@ -16,6 +16,8 @@ jobs:
           java-version: 11
       - name: Check if pom.xml exists
         run: ls -la
+      - name: Install ADB
+        run: sudo apt-get install -y adb
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
@@ -25,18 +27,11 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
-    container:
-      image: appium/appium
-      options: --env APPIUM_PORT=0
-      ports:
-        - 4723:4723
-      env:
-        JAVA_HOME: /usr/local/openjdk-11
-        ANDROID_HOME: /usr/local/android-sdk
-        ANDROID_SDK_ROOT: /usr/local/android-sdk
-        PATH: $PATH:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
-        APPIUM_PORT: 4723
-        ANDROID_SERIAL: ${{ secrets.ANDROID_SERIAL }}
+    env:
+      JAVA_HOME: /usr/local/openjdk-11
+      ANDROID_HOME: /usr/local/android-sdk
+      ANDROID_SDK_ROOT: /usr/local/android-sdk
+      PATH: ${{ env.PATH }}:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -58,7 +53,9 @@ jobs:
           npm install -g appium
           npm install
       - name: Start Appium server
-        run: appium -p $APPIUM_PORT &
+        run: appium -p ${{ env.APPIUM_PORT }} &
+        env:
+          APPIUM_PORT: 4723
       - name: Wait for Appium to start
         run: |
           timeout 60s bash -c 'until echo > /dev/tcp/127.0.0.1/$APPIUM_PORT; do sleep 1; done'
