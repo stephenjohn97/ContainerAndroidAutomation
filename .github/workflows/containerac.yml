@@ -40,7 +40,11 @@ jobs:
         with:
           java-version: 11
       - name: Install ADB
-        run: sudo apt-get install -y adb
+        run: sudo apt-get install -y adb=1.0.41
+      - name: Build with Maven
+        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
+      - name: Install APK
+        run: adb -s 08301JEC200526 install -r ${{ github.workspace }}/AC.apk
       - name: Connect to Android device
         run: |
           sudo adb devices
