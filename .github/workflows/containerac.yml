@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          ref: main
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
@@ -23,7 +21,7 @@ jobs:
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
-        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r ${{ github.workspace }}/AC.apk
+        run: adb -s 08301JEC200526 install -r ${{ github.workspace }}/AC.apk
 
 
   test:
@@ -37,8 +35,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          ref: main
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
@@ -48,19 +44,18 @@ jobs:
       - name: Connect to Android device
         run: |
           adb devices
-          adb -s $ANDROID_SERIAL wait-for-device
-          adb -s $ANDROID_SERIAL shell input keyevent 82 &
+          adb -s 08301JEC200526 wait-for-device
+          adb -s 08301JEC200526 shell input keyevent 82 &
         env:
-          ANDROID_SERIAL: ${{ secrets.ANDROID_SERIAL }}
+          YOUR_DEVICE_SERIAL: 08301JEC200526
       - name: Install app dependencies
-        working-directory: /Users/stefan/Desktop/ContainerAndroidAutomation/AC.apk
         run: |
           npm install -g appium
           npm install
-        env:
-          APPIUM_PORT: 4723
       - name: Start Appium server
         run: appium -p ${{ env.APPIUM_PORT }} &
+        env:
+          APPIUM_PORT: 4723
       - name: Wait for Appium to start
         run: |
           timeout 60s bash -c 'until echo > /dev/tcp/127.0.0.1/$APPIUM_PORT; do sleep 1; done'
