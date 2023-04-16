@@ -21,7 +21,7 @@ jobs:
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
-        run: adb -s 08301JEC200526 install -r /Users/stefan/Desktop/ContainerAndroidAutomation/AC.apk
+        run: adb -s RZ8R219L7QP install -r /Users/stefan/Desktop/ContainerAndroidAutomation/AC.apk
 
 
   test:
@@ -44,10 +44,10 @@ jobs:
       - name: Connect to Android device
         run: |
           adb devices
-          adb -s 08301JEC200526 wait-for-device
-          adb -s 08301JEC200526 shell input keyevent 82 &
+          adb -s RZ8R219L7QP wait-for-device
+          adb -s RZ8R219L7QP shell input keyevent 82 &
         env:
-          YOUR_DEVICE_SERIAL: 08301JEC200526
+          YOUR_DEVICE_SERIAL: RZ8R219L7QP
       - name: Install app dependencies
         run: |
           npm install -g appium
