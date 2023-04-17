@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -15,23 +15,26 @@ jobs:
         with:
           java-version: 11
       - name: Check if pom.xml exists
-        run: ls -la
+        run: dir
       - name: Install ADB
-        run: sudo apt-get install -y adb
+        run: |
+          curl -O "https://dl.google.com/android/repository/platform-tools-latest-windows.zip"
+          Expand-Archive platform-tools-latest-windows.zip -DestinationPath $env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools
+          echo %PATH%
+          echo %ANDROID_HOME%
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
         run: adb -s 08301JEC200526 install -r ${{ github.workspace }}/AC.apk
 
-
   test:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
-      JAVA_HOME: C:\Program Files\Amazon Corretto\jdk11.0.11_9
+      JAVA_HOME: C:\Program Files\Java\jdk-11.0.12
       ANDROID_HOME: C:\Users\Stephen\AppData\Local\Android\Sdk
       ANDROID_SDK_ROOT: C:\Users\Stephen\AppData\Local\Android\Sdk
-      PATH: ${{ github.workspace }}:C:\Program Files\Amazon Corretto\jdk11.0.11_9:/C:\Program Files\Amazon Corretto\jdk11.0.11_9:C:\Program Files\Amazon Corretto\jdk11.0.11_9
+      PATH: C:\Program Files\Java\jdk-11.0.12\bin;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\emulator;%ANDROID_HOME%\tools;%ANDROID_HOME%\tools\bin;%PATH%
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -40,14 +43,14 @@ jobs:
         with:
           java-version: 11
       - name: Install ADB
-        run: sudo apt-get install -y adb=1.0.41
-      - name: Build with Maven
-        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
-      - name: Install APK
-        run: adb -s 08301JEC200526 install -r ${{ github.workspace }}/AC.apk
+        run: |
+          curl -O "https://dl.google.com/android/repository/platform-tools-latest-windows.zip"
+          Expand-Archive platform-tools-latest-windows.zip -DestinationPath $env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools
+          echo %PATH%
+          echo %ANDROID_HOME%
       - name: Connect to Android device
         run: |
-          sudo adb devices
+          adb devices
           adb -s 08301JEC200526 wait-for-device
           adb -s 08301JEC200526 shell input keyevent 82 &
         env:
@@ -70,4 +73,3 @@ jobs:
         with:
           name: test-results
           path: Extent-Report/Report/
-
