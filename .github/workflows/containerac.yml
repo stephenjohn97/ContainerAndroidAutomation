@@ -1,5 +1,3 @@
-ONLY YAML FILE. DONT CONSIDER OTHER
-
 name: Java Appium Automation CI
 
 on:
