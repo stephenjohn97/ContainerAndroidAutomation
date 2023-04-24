@@ -48,7 +48,7 @@ jobs:
         run: appium &
       - name: Wait for Appium to start
         run: |
-         timeout 60s bash -c 'until [[ $(lsof -t -i :<port_number>) ]]; do sleep 1; done'
+         timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
       - name: Install APK
         run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r AC.apk
       - name: Run Appium tests
