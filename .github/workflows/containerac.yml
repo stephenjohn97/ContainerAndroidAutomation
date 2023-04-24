@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -15,13 +15,13 @@ jobs:
         with:
           java-version: 11
       - name: Check if pom.xml exists
-        run: dir
+        run: ls
       - name: Install ADB
         run: |
-          curl -O "https://dl.google.com/android/repository/platform-tools-latest-windows.zip"
-          Expand-Archive platform-tools-latest-windows.zip -DestinationPath $env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools
-          echo %PATH%
-          echo %ANDROID_HOME%
+          curl -O "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
+          unzip platform-tools-latest-darwin.zip -d $HOME/Library/Android/sdk/
+          echo $PATH
+          echo $ANDROID_HOME
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
@@ -29,12 +29,15 @@ jobs:
 
   test:
     needs: build
-    runs-on: windows-latest
+    runs-on: macos-latest
     env:
-      JAVA_HOME: C:\Program Files\Java\jdk-11.0.12
-      ANDROID_HOME: C:\Users\Stephen\AppData\Local\Android\Sdk
-      ANDROID_SDK_ROOT: C:\Users\Stephen\AppData\Local\Android\Sdk
-      PATH: C:\Program Files\Java\jdk-11.0.12\bin;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\emulator;%ANDROID_HOME%\tools;%ANDROID_HOME%\tools\bin;%PATH%
+      JAVA_HOME: ${{ matrix.java-version }}
+      ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
+      ANDROID_SDK_ROOT: $HOME/Library/Android/sdk
+      PATH: ${{ env.PATH }}:${{ env.ANDROID_HOME }}/platform-tools:${{ env.ANDROID_HOME }}/emulator:${{ env.ANDROID_HOME }}/tools:${{ env.ANDROID_HOME }}/tools/bin
+    strategy:
+      matrix:
+        java-version: [11]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -44,10 +47,10 @@ jobs:
           java-version: 11
       - name: Install ADB
         run: |
-          curl -O "https://dl.google.com/android/repository/platform-tools-latest-windows.zip"
-          Expand-Archive platform-tools-latest-windows.zip -DestinationPath $env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools
-          echo %PATH%
-          echo %ANDROID_HOME%
+          curl -O "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
+          unzip platform-tools-latest-darwin.zip -d $HOME/Library/Android/sdk/
+          echo $PATH
+          echo $ANDROID_HOME
       - name: Connect to Android device
         run: |
           adb devices
