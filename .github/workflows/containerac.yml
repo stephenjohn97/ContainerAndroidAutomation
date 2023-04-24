@@ -1,63 +1,25 @@
-name: Java Appium Automation CI
+name: Appium Android Automation
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
-    runs-on: macos-latest
-    container:
-      image: mcr.microsoft.com/vscode/devcontainers/java:0-11
-      options: --user vscode --security-opt seccomp=unconfined
+  appium-android:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build with Maven
-        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
-      - name: Install APK
-        run: adb -s 08301JEC200526 install -r ${{ github.workspace }}/AC.apk
-      - name: Set up emulator
-        run: |
-          echo "y" | sdkmanager --install 'system-images;android-30;google_apis;x86'
-          echo "no" | avdmanager --verbose create avd --force --name testAVD --package 'system-images;android-30;google_apis;x86' --tag 'google_apis' --abi 'x86'
-      - name: Start emulator
-        run: |
-          emulator -avd testAVD -no-window -no-audio &
-          android-wait-for-emulator
-          adb shell input keyevent 82 &
-
-  test:
-    needs: build
-    runs-on: macos-latest
-    container:
-      image: mcr.microsoft.com/vscode/devcontainers/java:0-11
-      options: --user vscode --security-opt seccomp=unconfined
-    env:
-      APPIUM_PORT: 4723
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Connect to Android device
-        run: |
-          adb devices
-          adb -s 08301JEC200526 wait-for-device
-          adb -s 08301JEC200526 shell input keyevent 82 &
-        env:
-          YOUR_DEVICE_SERIAL: 08301JEC200526
-      - name: Install app dependencies
-        run: |
-          npm install -g appium
-          npm install
-      - name: Start Appium server
-        run: appium -p ${{ env.APPIUM_PORT }} &
-      - name: Wait for Appium to start
-        run: |
-          timeout 60s bash -c 'until echo > /dev/tcp/127.0.0.1/$APPIUM_PORT; do sleep 1; done'
-      - name: Run Appium tests
-        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test --file pom.xml
-      - name: Archive test results
-        uses: actions/upload-artifact@v2
+      - uses: actions/checkout@v2
+      - name: Setup Java 11
+        uses: actions/setup-java@v2
         with:
-          name: test-results
-          path: Extent-Report/Report/
+          java-version: 11
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          sdk-platform: "android-30"
+          ndk-version: "21.4.7075529"
+          java-version: 11.0.11
+      - name: Install dependencies
+        run: mvn dependency:resolve
+      - name: Run Appium tests
+        run: mvn test -Dtest=TestSuite
