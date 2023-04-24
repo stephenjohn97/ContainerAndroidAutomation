@@ -83,7 +83,7 @@
 			<artifactId>cucumber-plugin</artifactId>
 			<version>7.0.0</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-core</artifactId>
 			<version>3.8.2</version>
@@ -94,14 +94,14 @@
 			<artifactId>maven-invoker</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
+		<!--
+		https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
 		<dependency>
 			<groupId>tech.grasshopper</groupId>
 			<artifactId>extentreports-cucumber7-adapter</artifactId>
@@ -112,5 +112,6 @@
 			<artifactId>extentreports</artifactId>
 			<version>5.0.7</version>
 		</dependency>
+
 	</dependencies>
 </project>

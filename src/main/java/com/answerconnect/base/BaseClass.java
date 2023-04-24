@@ -24,6 +24,8 @@ public class BaseClass extends ExcelRead {
 	static InputStream input = null;
 	static ServerSocket socket;
 	static int port;
+	public static String userName = "answerconnect_d0BTEv";
+	public static String accessKey = "wjqrx6hhPmJcz2k7BH3T";
 
 	public static void launchApp() throws InterruptedException, IOException {
 		try {
@@ -31,7 +33,7 @@ public class BaseClass extends ExcelRead {
 			System.out.println("launchApp started");
 			loadPropertyFiles();
 			DesiredCapabilities capabilities = new DesiredCapabilities();
-			if (getData("deviceType").equalsIgnoreCase("RealDevice")) {
+			if (getData("RealDevice").equalsIgnoreCase("No")) {
 				System.out.println("In real device");
 				capabilities.setCapability("platformName", getData("platformName"));
 				capabilities.setCapability("deviceName", getData("deviceName"));
@@ -45,7 +47,24 @@ public class BaseClass extends ExcelRead {
 				capabilities.setCapability("skipUnlock", true);
 				driver = new AndroidDriver<AndroidElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			} else if (getData("CloudDevice").equalsIgnoreCase("Yes")) {
+				capabilities.setCapability("device", "Google Pixel 6 Pro");
+				capabilities.setCapability("os_version", "13.0");
+				capabilities.setCapability("project", "AC Container");
+				capabilities.setCapability("build", "AnswerConnect");
+				capabilities.setCapability("name", "Bstack-[Java] Sample Test");
+				capabilities.setCapability("app", "bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792");
+				capabilities.setCapability("autoGrantPermissions", true);
+				capabilities.setCapability("autoAcceptAlerts", true);
+				capabilities.setCapability("noReset", false);
+				capabilities.setCapability("fullReset", true);
+				capabilities.setCapability("newCommandTimeout", 120);
+				driver = new AndroidDriver<AndroidElement>(
+						new URL("https://" + userName + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub"),
+						capabilities);
+				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
