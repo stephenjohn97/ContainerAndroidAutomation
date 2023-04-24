@@ -30,7 +30,7 @@ jobs:
         with:
           java-version: 11
       - name: Install ADB
-        run: sudo apt-get install -y adb
+        run: brew install --cask android-platform-tools
       - name: Connect to Android device
         run: |
           adb start-server
