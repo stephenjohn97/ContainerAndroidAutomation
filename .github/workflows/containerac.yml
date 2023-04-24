@@ -1,75 +1,30 @@
-name: Java Appium Automation CI
+name: Android Automation CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up JDK 11
+      - uses: actions/checkout@v2
+      - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 11
-      - name: Check if pom.xml exists
-        run: dir
-      - name: Install ADB
-        run: |
-          curl -O "https://dl.google.com/android/repository/platform-tools-latest-windows.zip"
-          Expand-Archive platform-tools-latest-windows.zip -DestinationPath $env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools
-          echo %PATH%
-          echo %ANDROID_HOME%
-      - name: Build with Maven
-        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
-      - name: Install APK
-        run: adb -s 08301JEC200526 install -r ${{ github.workspace }}/AC.apk
-
-  test:
-    needs: build
-    runs-on: windows-latest
-    env:
-      JAVA_HOME: C:\Program Files\Java\jdk-11.0.12
-      ANDROID_HOME: C:\Users\Stephen\AppData\Local\Android\Sdk
-      ANDROID_SDK_ROOT: C:\Users\Stephen\AppData\Local\Android\Sdk
-      PATH: C:\Program Files\Java\jdk-11.0.12\bin;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\emulator;%ANDROID_HOME%\tools;%ANDROID_HOME%\tools\bin;%PATH%
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
+          java-version: 1.8
+      - name: Install Android SDK
+        uses: android-actions/setup-android-sdk@v2
         with:
-          java-version: 11
-      - name: Install ADB
+          components: tools
+      - name: Build and test with Maven
         run: |
-          curl -O "https://dl.google.com/android/repository/platform-tools-latest-windows.zip"
-          Expand-Archive platform-tools-latest-windows.zip -DestinationPath $env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools
-          echo %PATH%
-          echo %ANDROID_HOME%
-      - name: Connect to Android device
-        run: |
-          adb devices
-          adb -s 08301JEC200526 wait-for-device
-          adb -s 08301JEC200526 shell input keyevent 82 &
+          mvn clean install -DskipTests=false
         env:
-          YOUR_DEVICE_SERIAL: 08301JEC200526
-      - name: Install app dependencies
-        run: |
-          npm install -g appium
-          npm install
-      - name: Start Appium server
-        run: appium -p ${{ env.APPIUM_PORT }} &
-        env:
-          APPIUM_PORT: 4723
-      - name: Wait for Appium to start
-        run: |
-          timeout 60s bash -c 'until echo > /dev/tcp/127.0.0.1/$APPIUM_PORT; do sleep 1; done'
-      - name: Run Appium tests
-        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test --file pom.xml
-      - name: Archive test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: Extent-Report/Report/
+          APPIUM_URL: http://localhost:4723/wd/hub
+          DEVICE_NAME: 08301JEC200526
+          PLATFORM_VERSION: 13
