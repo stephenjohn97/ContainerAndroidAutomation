@@ -7,50 +7,37 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    container:
+      image: mcr.microsoft.com/vscode/devcontainers/java:0-11
+      options: --user vscode --security-opt seccomp=unconfined
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Check if pom.xml exists
-        run: ls
-      - name: Install ADB
-        run: |
-          curl -O "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
-          unzip platform-tools-latest-darwin.zip -d $HOME/Library/Android/sdk/
-          echo $PATH
-          echo $ANDROID_HOME
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
       - name: Install APK
         run: adb -s 08301JEC200526 install -r ${{ github.workspace }}/AC.apk
+      - name: Set up emulator
+        run: |
+          echo "y" | sdkmanager --install 'system-images;android-30;google_apis;x86'
+          echo "no" | avdmanager --verbose create avd --force --name testAVD --package 'system-images;android-30;google_apis;x86' --tag 'google_apis' --abi 'x86'
+      - name: Start emulator
+        run: |
+          emulator -avd testAVD -no-window -no-audio &
+          android-wait-for-emulator
+          adb shell input keyevent 82 &
 
   test:
     needs: build
     runs-on: macos-latest
+    container:
+      image: mcr.microsoft.com/vscode/devcontainers/java:0-11
+      options: --user vscode --security-opt seccomp=unconfined
     env:
-      JAVA_HOME: ${{ matrix.java-version }}
-      ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
-      ANDROID_SDK_ROOT: $HOME/Library/Android/sdk
-      PATH: ${{ env.PATH }}:${{ env.ANDROID_HOME }}/platform-tools:${{ env.ANDROID_HOME }}/emulator:${{ env.ANDROID_HOME }}/tools:${{ env.ANDROID_HOME }}/tools/bin
-    strategy:
-      matrix:
-        java-version: [11]
+      APPIUM_PORT: 4723
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Install ADB
-        run: |
-          curl -O "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
-          unzip platform-tools-latest-darwin.zip -d $HOME/Library/Android/sdk/
-          echo $PATH
-          echo $ANDROID_HOME
       - name: Connect to Android device
         run: |
           adb devices
@@ -64,8 +51,6 @@ jobs:
           npm install
       - name: Start Appium server
         run: appium -p ${{ env.APPIUM_PORT }} &
-        env:
-          APPIUM_PORT: 4723
       - name: Wait for Appium to start
         run: |
           timeout 60s bash -c 'until echo > /dev/tcp/127.0.0.1/$APPIUM_PORT; do sleep 1; done'
