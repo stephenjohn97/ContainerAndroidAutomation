@@ -29,6 +29,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Set up Android environment
+        run: echo "export ANDROID_HOME=/Users/stefan/Library/Android/sdk" >> $GITHUB_ENV
       - name: Install ADB
         run: brew install --cask android-platform-tools
       - name: Connect to Android device
@@ -36,10 +38,10 @@ jobs:
           adb start-server
           sleep 5
           adb devices
-          adb -s "${{ secrets.ANDROID_SERIAL }}" wait-for-device
-          adb -s "${{ secrets.ANDROID_SERIAL }}" shell input keyevent 82 &
+          adb -s ${{ secrets.ANDROID_SERIAL }} wait-for-device
+          adb -s ${{ secrets.ANDROID_SERIAL }} shell input keyevent 82 &
         env:
-          ANDROID_SERIAL: "${{ secrets.ANDROID_SERIAL }}"
+          ANDROID_SERIAL: ${{ secrets.ANDROID_SERIAL }}
       - name: Install app dependencies
         run: |
           npm install -g appium
@@ -50,7 +52,7 @@ jobs:
         run: |
          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
       - name: Install APK
-        run: adb -s "${{ secrets.ANDROID_SERIAL }}" install -r AC.apk
+        run: adb -s ${{ secrets.ANDROID_SERIAL }} install -r AC.apk
       - name: Run Appium tests
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test --file pom.xml
       - name: Archive test results
