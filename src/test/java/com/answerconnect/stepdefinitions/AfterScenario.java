@@ -28,7 +28,7 @@ public class AfterScenario extends CommonUtilities {
 				String screenshot = ts.getScreenshotAs(OutputType.BASE64);
 				screenshot = screenshot.replaceAll("[^A-Za-z0-9+/]", "");
 				byte[] ss = Base64.getDecoder().decode(screenshot);
-				scenario.attach(ss, "image/jpeg", "Refer");
+				scenario.attach(ss, "image/png", "Refer");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -38,7 +38,7 @@ public class AfterScenario extends CommonUtilities {
 				String screenshot = ts.getScreenshotAs(OutputType.BASE64);
 				screenshot = screenshot.replaceAll("[^A-Za-z0-9+/]", "");
 				byte[] ss = Base64.getDecoder().decode(screenshot);
-				scenario.attach(ss, "image/jpeg", "Refer");
+				scenario.attach(ss, "image/png", "Refer");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
