@@ -16,27 +16,6 @@
 					<target>11</target>
 				</configuration>
 			</plugin>
-<<<<<<< HEAD
-=======
-			<plugin>
-				<groupId>com.browserstack</groupId>
-				<artifactId>browserstack-maven-plugin</artifactId>
-				<version>2.1.0</version>
-				<configuration>
-					<browserstack.username>answerconnect_d0BTEv</browserstack.username>
-					<browserstack.accessKey>wjqrx6hhPmJcz2k7BH3T</browserstack.accessKey>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>upload</goal>
-							<goal>run</goal>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
->>>>>>> c3efa0b7aa04db046b4cf6c517bef1362135a96d
 		</plugins>
 	</build>
 
