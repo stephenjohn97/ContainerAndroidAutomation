@@ -27,6 +27,24 @@
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.browserstack</groupId>
+				<artifactId>browserstack-local-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<key>VALUE</key>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<key>VALUE</key>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
