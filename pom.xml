@@ -21,8 +21,8 @@
 				<artifactId>browserstack-maven-plugin</artifactId>
 				<version>2.1.0</version>
 				<configuration>
-					<browserstack.username>answerconnect_d0BTEv</browserstack.username>
-					<browserstack.accessKey>wjqrx6hhPmJcz2k7BH3T</browserstack.accessKey>
+					<browserstack.username>YOUR_USERNAME</browserstack.username>
+					<browserstack.accessKey>YOUR_ACCESS_KEY</browserstack.accessKey>
 				</configuration>
 				<executions>
 					<execution>
