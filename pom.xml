@@ -16,24 +16,6 @@
 					<target>11</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.browserstack</groupId>
-				<artifactId>browserstack-maven-plugin</artifactId>
-				<version>2.1.0</version>
-				<configuration>
-					<browserstack.username>YOUR_USERNAME</browserstack.username>
-					<browserstack.accessKey>YOUR_ACCESS_KEY</browserstack.accessKey>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>upload</goal>
-							<goal>run</goal>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 
@@ -130,6 +112,10 @@
 			<artifactId>extentreports</artifactId>
 			<version>5.0.7</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.browserstack</groupId>
+			<artifactId>automate-maven-plugin</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 	</dependencies>
 </project>
