@@ -59,7 +59,7 @@ jobs:
       - name: Install app dependencies
         run: npm install
       - name: Run tests on BrowserStack
-        run: mvn -B -X -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
+        run: mvn -B -X -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack-repo --file pom.xml
 #       - name: Debug BrowserStack outputs
 #         run: |
 #           echo "BrowserStack outputs:"
