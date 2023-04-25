@@ -59,7 +59,10 @@ jobs:
       - name: Install app dependencies
         run: npm install
       - name: Run Appium tests on BrowserStack
+        id: browserstack
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
+      - name: Print BrowserStack job ID
+        run: echo "BrowserStack job ID ${{ steps.browserstack.outputs.job_id }}"
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
