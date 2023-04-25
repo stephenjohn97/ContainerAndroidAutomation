@@ -5,13 +5,12 @@
 	<groupId>com.answerconnect.android</groupId>
 	<artifactId>ANCT_Android_BDD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<repositories>
-		<repository>
+	<pluginRepositories>
+		<pluginRepository>
 			<id>browserstack-repo</id>
-			<name>BrowserStack Repository</name>
 			<url>https://repository.browserstack.com/releases</url>
-		</repository>
-	</repositories>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<profiles>
 		<profile>
@@ -161,8 +160,9 @@
 		</dependency>
 		<dependency>
 			<groupId>com.browserstack</groupId>
-			<artifactId>automate-maven-plugin</artifactId>
-			<version>1.1.1</version>
+			<artifactId>browserstack-local-maven-plugin</artifactId>
+			<version>1.0.0</version>
 		</dependency>
+
 	</dependencies>
 </project>
