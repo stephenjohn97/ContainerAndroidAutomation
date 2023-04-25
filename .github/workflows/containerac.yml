@@ -61,8 +61,8 @@ jobs:
           -Dtest=YourTest \
           -DargLine="-Dbrowserstack.localIdentifier=$BROWSERSTACK_LOCAL_IDENTIFIER \
           -Dbrowserstack.appium_version=1.22.0 \
-          -Dbrowserstack.project_name=YourProjectName \
-          -Dbrowserstack.build_name=YourBuildName \
+          -Dbrowserstack.project_name=AC Container \
+          -Dbrowserstack.build_name=AnswerConnect \
           -Dbrowserstack.debug=true \
           -Dbrowserstack.networkLogs=true \
           -Dbrowserstack.video=true \
