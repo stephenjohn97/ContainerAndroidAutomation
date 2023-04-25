@@ -20,8 +20,12 @@ jobs:
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
 
   test:
-    needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        device:
+          - "Samsung Galaxy S21 Ultra"
+          - "Google Pixel 4"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,14 +33,28 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Set up BrowserStack environment
-        uses: browserstack/github-action@master
-        with:
-          browserstack_username: ${{ secrets.BROWSERSTACK_USERNAME }}
-          browserstack_access_key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          app_path: "./AC.apk"
-          device: "Google Pixel 3"
-          os_version: "9.0"
+      - name: Install dependencies
+        run: |
+          npm install -g appium
+          npm install
+      - name: Run Appium tests on BrowserStack
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: |
+          # Start Appium server
+          appium &
+          # Wait for Appium to start
+          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
+          # Install APK on BrowserStack device
+          curl -u "${BROWSERSTACK_USERNAME}:${BROWSERSTACK_ACCESS_KEY}" \
+            -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
+            -F "file=@AC.apk" \
+            -F "custom_id=AC"
+          # Run Appium tests on BrowserStack device
+          appium --relaxed-security --device-name "${{ matrix.device }}" \
+            --platform-name Android --app "bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792" \
+            --browserstack-debug --no-reset
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
