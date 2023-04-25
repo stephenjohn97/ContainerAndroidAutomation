@@ -58,8 +58,8 @@ jobs:
          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
       - name: Install app dependencies
         run: npm install
-      - name: Run Appium tests on BrowserStack
-        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
+      - name: Run tests on BrowserStack
+        run: mvn -B -X -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
 #       - name: Debug BrowserStack outputs
 #         run: |
 #           echo "BrowserStack outputs:"
