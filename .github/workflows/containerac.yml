@@ -59,16 +59,15 @@ jobs:
       - name: Install app dependencies
         run: npm install
       - name: Run Appium tests on BrowserStack
-        id: AnswerConnect
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
-      - name: Debug BrowserStack outputs
-        run: |
-          echo "BrowserStack outputs:"
-          echo ${{ steps.browserstack.outputs }}
-          echo "toJson output:"
-          echo ${{ toJson(steps.browserstack.outputs) }}
-      - name: Print BrowserStack outputs
-        run: echo "${{ toJson(steps.browserstack.outputs) }}"
+#       - name: Debug BrowserStack outputs
+#         run: |
+#           echo "BrowserStack outputs:"
+#           echo ${{ steps.browserstack.outputs }}
+#           echo "toJson output:"
+#           echo ${{ toJson(steps.browserstack.outputs) }}
+#       - name: Print BrowserStack outputs
+#         run: echo "${{ toJson(steps.browserstack.outputs) }}"
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
