@@ -22,6 +22,11 @@ jobs:
         run: ls -la
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
+      - name: Print environment variables
+        run: |
+          echo "BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME"
+          echo "BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY"
+
 
   test:
     needs: build
