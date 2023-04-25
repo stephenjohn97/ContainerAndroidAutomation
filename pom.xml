@@ -158,11 +158,5 @@
 			<artifactId>extentreports</artifactId>
 			<version>5.0.7</version>
 		</dependency>
-		<dependency>
-			<groupId>com.browserstack</groupId>
-			<artifactId>browserstack-local-maven-plugin</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
 	</dependencies>
 </project>
