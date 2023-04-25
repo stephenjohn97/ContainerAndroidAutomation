@@ -59,7 +59,7 @@ jobs:
       - name: Install app dependencies
         run: npm install
       - name: Run Appium tests on BrowserStack
-        id: bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792
+        id: Bstack-[Java] Sample Test
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
       - name: Debug BrowserStack outputs
         run: |
