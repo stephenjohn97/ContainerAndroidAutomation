@@ -5,6 +5,14 @@
 	<groupId>com.answerconnect.android</groupId>
 	<artifactId>ANCT_Android_BDD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<repositories>
+		<repository>
+			<id>browserstack-repo</id>
+			<name>BrowserStack Repository</name>
+			<url>https://repository.browserstack.com/releases</url>
+		</repository>
+	</repositories>
+
 
 	<profiles>
 		<profile>
@@ -19,18 +27,14 @@
 							<execution>
 								<goals>
 									<goal>start</goal>
+									<goal>stop</goal>
 								</goals>
-								<configuration>
-									<key>VALUE</key>
-								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<key>VALUE</key>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
+
 		</profile>
 	</profiles>
 	<build>
