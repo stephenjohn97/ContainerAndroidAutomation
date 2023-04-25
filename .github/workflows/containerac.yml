@@ -20,19 +20,8 @@ jobs:
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
 
   test:
+    runs-on: windows-latest
     needs: build
-    strategy:
-      matrix:
-        os: [macos-latest]
-        device:
-          - "Google Pixel 5-11"
-          - "Samsung Galaxy S21 Ultra-12"
-    runs-on: ${{ matrix.os }}
-    env:
-      BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-      BROWSERSTACK_APP_ID: ${{ secrets.BROWSERSTACK_APP_ID }}
-      BROWSERSTACK_LOCAL_IDENTIFIER: ${{ github.run_id }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -40,31 +29,28 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Install dependencies
-        run: |
-          npm install -g appium
-          npm install
+      - name: Install BrowserStack CLI
+        run: npm install -g browserstack-cli
+      - name: Set up BrowserStack credentials
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
       - name: Start Appium server
         run: appium &
       - name: Wait for Appium to start
         run: |
          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
       - name: Upload app to BrowserStack
-        run: |
-          curl -u $BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY \
-          -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
-          -F "file=@/path/to/your/app" \
-          -F "custom_id=$BROWSERSTACK_APP_ID"
+        run: browserstack app-upload --file AC.apk
       - name: Run Appium tests on BrowserStack
         run: |
-          mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test \
-          -Dtest=YourTest \
-          -DargLine="-Dbrowserstack.localIdentifier=$BROWSERSTACK_LOCAL_IDENTIFIER \
-          -Dbrowserstack.appium_version=1.22.0 \
-          -Dbrowserstack.project_name=AC Container \
-          -Dbrowserstack.build_name=AnswerConnect \
-          -Dbrowserstack.debug=true \
-          -Dbrowserstack.networkLogs=true \
-          -Dbrowserstack.video=true \
-          -Dbrowserstack.device=$DEVICE" \
-          --file pom.xml
+          browserstack appium start --devices "Samsung Galaxy S21 Plus-5G" --app "bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792" --project-name "Java Appium Automation CI" --build-name ${{ github.run_number }} --deviceLogs --networkLogs --testSuite "testng.xml"
+      - name: Download test results from BrowserStack
+        run: |
+          mkdir -p test-results
+          browserstack appium tests --devices "Samsung Galaxy S21 Plus-5G" --app "bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792" --testSuite "testng.xml" --output-format junit --output-file test-results/test-results.xml
+      - name: Archive test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: test-results
