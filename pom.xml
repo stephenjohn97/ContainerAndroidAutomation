@@ -14,31 +14,7 @@
 	</repositories>
 
 
-	<profiles>
-		<profile>
-			<id>browserstack</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.browserstack</groupId>
-						<artifactId>browserstack-local-maven-plugin</artifactId>
-						<version>1.0.7</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>start</goal>
-									<goal>stop</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-
-		</profile>
-	</profiles>
 	<build>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
