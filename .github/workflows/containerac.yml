@@ -33,6 +33,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: List files in directory
+        run: ls -la
       - name: Install dependencies
         run: |
           npm install -g appium
