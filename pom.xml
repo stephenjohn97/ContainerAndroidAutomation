@@ -5,6 +5,33 @@
 	<groupId>com.answerconnect.android</groupId>
 	<artifactId>ANCT_Android_BDD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<profiles>
+		<profile>
+			<id>browserstack</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.browserstack</groupId>
+						<artifactId>browserstack-local-maven-plugin</artifactId>
+						<version>1.0.0</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>start</goal>
+								</goals>
+								<configuration>
+									<key>VALUE</key>
+								</configuration>
+							</execution>
+						</executions>
+						<configuration>
+							<key>VALUE</key>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
 			<plugin>
@@ -25,24 +52,6 @@
 						<browserstack.build.name>AnswerConnect</browserstack.build.name>
 						<browserstack.project.name>AC Container</browserstack.project.name>
 					</systemPropertyVariables>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.browserstack</groupId>
-				<artifactId>browserstack-local-maven-plugin</artifactId>
-				<version>1.0.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>start</goal>
-						</goals>
-						<configuration>
-							<key>VALUE</key>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration>
-					<key>VALUE</key>
 				</configuration>
 			</plugin>
 		</plugins>
