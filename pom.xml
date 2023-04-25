@@ -5,12 +5,6 @@
 	<groupId>com.answerconnect.android</groupId>
 	<artifactId>ANCT_Android_BDD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>browserstack-repo</id>
-			<url>https://repository.browserstack.com/releases</url>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<profiles>
 		<profile>
@@ -49,17 +43,6 @@
 				<configuration>
 					<source>11</source>
 					<target>11</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.1</version>
-				<configuration>
-					<systemPropertyVariables>
-						<browserstack.build.name>AnswerConnect</browserstack.build.name>
-						<browserstack.project.name>AC Container</browserstack.project.name>
-					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
