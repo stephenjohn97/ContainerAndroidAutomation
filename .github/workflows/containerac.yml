@@ -4,11 +4,6 @@ on:
   push:
     branches: [ main ]
 
-env:
-  BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-  BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  BROWSERSTACK_APP_NAME: "Bstack-[Java] Sample Test"
-
 jobs:
   build:
     runs-on: macos-latest
@@ -26,7 +21,18 @@ jobs:
 
   test:
     needs: build
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-latest]
+        device:
+          - "Google Pixel 5-11"
+          - "Samsung Galaxy S21 Ultra-12"
+    runs-on: ${{ matrix.os }}
+    env:
+      BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      BROWSERSTACK_APP_ID: ${{ secrets.BROWSERSTACK_APP_ID }}
+      BROWSERSTACK_LOCAL_IDENTIFIER: ${{ github.run_id }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -34,42 +40,31 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Set up Android environment
-        run: echo "export ANDROID_HOME=/Users/stefan/Library/Android/sdk" >> $GITHUB_ENV
-      - name: Install ADB
-        run: brew install --cask android-platform-tools
-      - name: Update PATH environment variable
-        run: echo 'export PATH="$PATH:/usr/local/share/android-sdk/platform-tools"' >> $GITHUB_ENV
-      - name: Check and install coreutils
+      - name: Install dependencies
         run: |
-          if ! command -v timeout &> /dev/null; then
-            brew install coreutils
-          fi
-      - name: Install Appium
-        run: npm install -g appium
+          npm install -g appium
+          npm install
       - name: Start Appium server
         run: appium &
       - name: Wait for Appium to start
         run: |
          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
-      - name: Install app dependencies
-        run: npm install
-      - name: Run tests on BrowserStack
-        run: mvn -B -X -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack-repo --file pom.xml
-#       - name: Debug BrowserStack outputs
-#         run: |
-#           echo "BrowserStack outputs:"
-#           echo ${{ steps.browserstack.outputs }}
-#           echo "toJson output:"
-#           echo ${{ toJson(steps.browserstack.outputs) }}
-#       - name: Print BrowserStack outputs
-#         run: echo "${{ toJson(steps.browserstack.outputs) }}"
-      - name: Archive test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: Extent-Report/Report/
+      - name: Upload app to BrowserStack
+        run: |
+          curl -u $BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY \
+          -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
+          -F "file=@/path/to/your/app" \
+          -F "custom_id=$BROWSERSTACK_APP_ID"
+      - name: Run Appium tests on BrowserStack
+        run: |
+          mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test \
+          -Dtest=YourTest \
+          -DargLine="-Dbrowserstack.localIdentifier=$BROWSERSTACK_LOCAL_IDENTIFIER \
+          -Dbrowserstack.appium_version=1.22.0 \
+          -Dbrowserstack.project_name=YourProjectName \
+          -Dbrowserstack.build_name=YourBuildName \
+          -Dbrowserstack.debug=true \
+          -Dbrowserstack.networkLogs=true \
+          -Dbrowserstack.video=true \
+          -Dbrowserstack.device=$DEVICE" \
+          --file pom.xml
