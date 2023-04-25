@@ -5,6 +5,14 @@
 	<groupId>com.answerconnect.android</groupId>
 	<artifactId>ANCT_Android_BDD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<repositories>
+		<repository>
+			<id>browserstack-repo</id>
+			<name>BrowserStack Repository</name>
+			<url>https://repository.browserstack.com/releases</url>
+		</repository>
+	</repositories>
+
 	<profiles>
 		<profile>
 			<id>browserstack</id>
@@ -13,7 +21,7 @@
 					<plugin>
 						<groupId>com.browserstack</groupId>
 						<artifactId>browserstack-local-maven-plugin</artifactId>
-						<version>1.0.0</version>
+						<version>1.0.7</version>
 						<executions>
 							<execution>
 								<goals>
@@ -33,6 +41,7 @@
 		</profile>
 	</profiles>
 	<build>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
