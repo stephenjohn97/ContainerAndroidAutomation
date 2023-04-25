@@ -20,8 +20,8 @@ jobs:
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
 
   test:
-    runs-on: windows-latest
     needs: build
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,28 +29,16 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Install BrowserStack CLI
-        run: npm install -g browserstack-cli
-      - name: Set up BrowserStack credentials
-        env:
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-      - name: Start Appium server
-        run: appium &
-      - name: Wait for Appium to start
-        run: |
-         timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
-      - name: Upload app to BrowserStack
-        run: browserstack app-upload --file AC.apk
-      - name: Run Appium tests on BrowserStack
-        run: |
-          browserstack appium start --devices "Samsung Galaxy S21 Plus-5G" --app "bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792" --project-name "Java Appium Automation CI" --build-name ${{ github.run_number }} --deviceLogs --networkLogs --testSuite "testng.xml"
-      - name: Download test results from BrowserStack
-        run: |
-          mkdir -p test-results
-          browserstack appium tests --devices "Samsung Galaxy S21 Plus-5G" --app "bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792" --testSuite "testng.xml" --output-format junit --output-file test-results/test-results.xml
+      - name: Set up BrowserStack environment
+        uses: browserstack/github-action@master
+        with:
+          browserstack_username: ${{ secrets.BROWSERSTACK_USERNAME }}
+          browserstack_access_key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          app_path: "./AC.apk"
+          device: "Google Pixel 3"
+          os_version: "9.0"
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: test-results
+          path: Extent-Report/Report/
