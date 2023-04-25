@@ -20,12 +20,8 @@ jobs:
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
 
   test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        device:
-          - "Samsung Galaxy S21 Ultra"
-          - "Google Pixel 4"
+    needs: build
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -33,34 +29,27 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: List files in directory
-        run: ls -la
-      - name: Install dependencies
+      - name: Set up BrowserStack environment variables
+        run: |
+          echo "export BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }}" >> $GITHUB_ENV
+          echo "export BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_ACCESS_KEY }}" >> $GITHUB_ENV
+      - name: Install ADB
+        run: brew install --cask android-platform-tools
+      - name: Update PATH environment variable
+        run: echo 'export PATH="$PATH:/usr/local/share/android-sdk/platform-tools"' >> $GITHUB_ENV
+      - name: Install app dependencies
         run: |
           npm install -g appium
           npm install
-      - name: Run Appium tests on BrowserStack
-        env:
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      - name: Start Appium server
+        run: appium &
+      - name: Wait for Appium to start
         run: |
-          # Start Appium server
-          appium &
-          # Wait for Appium to start
-          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
-          # Install APK on BrowserStack device
-          curl -u "${BROWSERSTACK_USERNAME}:${BROWSERSTACK_ACCESS_KEY}" \
-            -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
-            -F "file=@AC.apk" \
-            -F "custom_id=AC"
-          # Run Appium tests on BrowserStack device
-          appium --relaxed-security --device-name "${{ matrix.device }}" \
-            --platform-name Android --app "bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792" \
-            --browserstack-debug --no-reset
+         timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
+      - name: Run Appium tests on BrowserStack
+        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -Dtestng.dtd.http=true -Dbrowserstack.debug=true -Dbrowserstack.video=true -Dproject=android --file pom.xml
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
           name: test-results
           path: Extent-Report/Report/
-          
-          
