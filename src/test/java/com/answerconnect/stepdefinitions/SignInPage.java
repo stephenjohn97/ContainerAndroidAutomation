@@ -14,7 +14,7 @@ public class SignInPage {
 
 	@Given("open the applicaton")
 	public void openApp() throws InterruptedException, IOException {
-		BaseClass.launchApp();
+		BaseClass.appLaunch();
 	}
 
 // ***INVALID SCENARIO***

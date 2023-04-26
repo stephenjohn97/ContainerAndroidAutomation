@@ -24,17 +24,16 @@ public class BaseClass extends ExcelRead {
 	static InputStream input = null;
 	static ServerSocket socket;
 	static int port;
-	public static String userName = "answerconnect_d0BTEv";
-	public static String accessKey = "wjqrx6hhPmJcz2k7BH3T";
+	public static String userName = getData("userName");
+	public static String accessKey = getData("accessKey");
 
-	public static void launchApp() throws InterruptedException, IOException {
+	public static void appLaunch() throws InterruptedException, IOException {
 		try {
 			server().start();
-			System.out.println("launchApp started");
+			System.out.println("App launching");
 			loadPropertyFiles();
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			if (getData("RealDevice").equalsIgnoreCase("No")) {
-				System.out.println("In real device");
 				capabilities.setCapability("platformName", getData("platformName"));
 				capabilities.setCapability("deviceName", getData("deviceName"));
 				capabilities.setCapability("platformVersion", getData("platformVersion"));
@@ -48,12 +47,12 @@ public class BaseClass extends ExcelRead {
 				driver = new AndroidDriver<AndroidElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			} else if (getData("CloudDevice").equalsIgnoreCase("Yes")) {
-				capabilities.setCapability("device", "Google Pixel 6 Pro");
-				capabilities.setCapability("os_version", "13.0");
-				capabilities.setCapability("project", "AC Container");
-				capabilities.setCapability("build", "AnswerConnect");
-				capabilities.setCapability("name", "Bstack-[Java] Sample Test");
-				capabilities.setCapability("app", "bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792");
+				capabilities.setCapability("device", getData("cloudDeviceName"));
+				capabilities.setCapability("os_version", getData("OS"));
+				capabilities.setCapability("project", getData("projectName"));
+				capabilities.setCapability("build", getData("buildName"));
+				capabilities.setCapability("name", getData("testName"));
+				capabilities.setCapability("app", getData("appID"));
 				capabilities.setCapability("autoGrantPermissions", true);
 				capabilities.setCapability("autoAcceptAlerts", true);
 				capabilities.setCapability("noReset", false);
@@ -68,14 +67,13 @@ public class BaseClass extends ExcelRead {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("completed launchApp");
+		System.out.println("App launched");
 	}
 
 	public static void loadPropertyFiles() throws IOException {
 		input = new FileInputStream("./src/main/resources/Locators/signIn.properties");
 		property.load(input);
 		System.out.println();
-
 	}
 
 	public static String prop(String element) {

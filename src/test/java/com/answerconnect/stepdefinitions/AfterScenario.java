@@ -56,6 +56,7 @@ public class AfterScenario extends CommonUtilities {
 		}
 
 		Desktop.getDesktop().browse(new File("Extent-Report/Report/AC_Android.html").toURI());
+		driver.quit();
 	}
 
 }
