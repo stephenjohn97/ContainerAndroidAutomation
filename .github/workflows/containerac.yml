@@ -21,7 +21,7 @@ jobs:
 
   test:
     needs: build
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -30,18 +30,25 @@ jobs:
         with:
           java-version: 11
       - name: Install BrowserStack CLI
-        run: curl -s https://cli.browserstack.com/bash > /tmp/browserstack && chmod +x /tmp/browserstack && sudo mv /tmp/browserstack /usr/local/bin/browserstack
+        run: |
+          curl -s https://cli.browserstack.com/bash -o /tmp/browserstack
+          chmod +x /tmp/browserstack
+          sudo mv /tmp/browserstack /usr/local/bin/browserstack
       - name: Install app dependencies
         run: |
           npm install -g appium
           npm install
-      - name: Run Appium tests on BrowserStack
+      - name: Start Appium server
+        run: appium &
+      - name: Wait for Appium to start
+        run: |
+         timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
+      - name: Run Appium tests
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: |
-          browserstack app-automate upload AC.apk
-          browserstack app-automate test "{'device': 'Google Pixel 5', 'os_version': '11.0', 'app': 'bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792', 'automationName': 'UiAutomator2', 'name': 'My Test'}"
+          mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test --file pom.xml -Dbs.username=$BROWSERSTACK_USERNAME -Dbs.accessKey=$BROWSERSTACK_ACCESS_KEY
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
