@@ -52,8 +52,10 @@ public class CommonUtilities extends BaseClass {
 				wait(element);
 				element.click();
 			}
+			log("Tapped successfully");
 		} catch (Exception e) {
 			e.printStackTrace();
+			log("Tapping failed");
 		}
 		return false;
 	}
@@ -78,14 +80,21 @@ public class CommonUtilities extends BaseClass {
 	public static void sendKeys(WebElement element, String input) {
 		try {
 			element.sendKeys(input);
+			log("Entered \"" + input + "\" successfully");
 		} catch (Exception e) {
 			e.printStackTrace();
+			log("\"" + input + "\"" + "fails to be entered");
 		}
 
 	}
 
 	public static void assertEqualsString(String actual, String expected) {
-		Assert.assertEquals(actual, expected);
+		try {
+			Assert.assertEquals(actual, expected);
+			log("\"" + expected + "\"" + " validated successfully");
+		} catch (Exception e) {
+			log("\"" + expected + "\"" + " validation failed");
+		}
 	}
 
 	public static String getBase64() {
@@ -102,8 +111,7 @@ public class CommonUtilities extends BaseClass {
 
 	public static void assertEquals(WebElement element, String input) {
 		String getheadertext = element.getText().trim();
-		System.out.println(getheadertext);
-		Assert.assertEquals(input, getheadertext);
+		Assert.assertEquals(getheadertext, input);
 	}
 
 	public static void softAssertEquals(WebElement element, String input) {
@@ -364,6 +372,14 @@ public class CommonUtilities extends BaseClass {
 			}
 			tempWait(500);
 		}
+	}
+
+	public static void logPass(String comment) {
+		ExtentCucumberAdapter.addTestStepLog("***" + comment + " validated successfully" + "***");
+	}
+
+	public static void logFail(String comment) {
+		ExtentCucumberAdapter.addTestStepLog("***" + comment + " validation failed" + "***");
 	}
 
 	public static void log(String comment) {

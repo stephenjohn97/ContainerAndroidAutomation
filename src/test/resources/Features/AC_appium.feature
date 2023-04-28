@@ -6,6 +6,25 @@ Feature: Login Page
   Scenario: Open the AnswerConnect application
     Given open the applicaton
 
+  @LoginScreenUI
+  Scenario: Check the login screen UI
+    Given validate the AnswerConnect logo
+    And validate the Forgot Password button text
+    And validate the Sign in with Google logo
+    Then validate the Sign in with Google text
+    And validate the text in Call Us
+    Then validate the text in Terms & Privacy
+
+  @ForgetPasswordCheck
+  Scenario: Check the Forget Password flow
+    Given tap on forget password button
+    When enter the invalid email ID in FP
+    And tap on Reset password button
+    Then validate the invalid toast message
+    When enter the valid email ID in FP
+    And tap on Reset password button
+    Then validate the Reset password link
+
   @InvalidLoginCheck
   Scenario: Check the Login functionalites with invalid data
     When enter the invalid email ID
@@ -18,5 +37,4 @@ Feature: Login Page
     When enter the email ID
     When enter the password
     And tap on login button
-    # And tap on skip button
     Then validate signIn page

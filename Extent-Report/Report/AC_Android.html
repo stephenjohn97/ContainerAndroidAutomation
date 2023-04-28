@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Apr 26, 2023 08:41:37</span>
+			<span class='label blue darken-3 suite-start-time'>Apr 27, 2023 06:08:13</span>
 			</a>
 		</ul>
 	</div>
@@ -76,10 +76,10 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
+					<li><a href='#'>@ValidLoginCheck</a></li>
 					<li><a href='#'>@InvalidLoginCheck</a></li>
 					<li><a href='#'>@AC_Android</a></li>
 					<li><a href='#'>@OpenApp</a></li>
-					<li><a href='#'>@ValidLoginCheck</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -140,7 +140,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>3</span> scenarios passed</span>
+                    <span class='strong'>5</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -160,7 +160,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>12</span> steps passed</span>
+                    <span class='strong'>27</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -190,7 +190,7 @@
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>Login Page</span>
-						<span class='test-time'>Apr 26, 2023 08:41:37</span>
+						<span class='test-time'>Apr 27, 2023 06:08:14</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -203,7 +203,7 @@
 
 <div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 00 30.372</span>
+	<span class='duration right label'>00 00 12.490</span>
 	<div class="bdd-test">
 		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Open the AnswerConnect application</div>
 	</div>
@@ -219,6 +219,7 @@
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.openApp())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given open the applicaton</div>
 
 
+					<div class="node-step">***Application launched sucessfully***</div>
 		</li>
 		<li test-id='4' class='node * Pass' status='Pass'>
 			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
@@ -233,7 +234,131 @@
 </div>
 <div class='scenario node' test-id='5' status='pass'>
 
-	<span class='duration right label'>00 00 05.360</span>
+	<span class='duration right label'>00 00 02.730</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Check the login screen UI</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@AC_Android</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='6' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.acLogo())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given validate the AnswerConnect logo</div>
+
+
+					<div class="node-step">***AnswerConnect logo validated successfully***</div>
+		</li>
+		<li test-id='7' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.forgetPasswordButtonText())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And validate the Forgot Password button text</div>
+
+
+					<div class="node-step">***Forget Password button validated successfully***</div>
+		</li>
+		<li test-id='8' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.signInWithGoogleLogo())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And validate the Sign in with Google logo</div>
+
+
+					<div class="node-step">***Sign in with Google logo validated successfully***</div>
+		</li>
+		<li test-id='9' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.signInWithGoogleText())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate the Sign in with Google text</div>
+
+
+					<div class="node-step">***"Sign in with Google" validated successfully***</div>
+		</li>
+		<li test-id='10' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.callUSText())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And validate the text in Call Us</div>
+
+
+					<div class="node-step">***"Need help? Call Us" validated successfully***</div>
+		</li>
+		<li test-id='11' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.termsAndPrivacyText())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate the text in Terms & Privacy</div>
+
+
+					<div class="node-step">***"By logging in you agree to Terms & Privacy" validated successfully***</div>
+		</li>
+		<li test-id='12' class='node * Pass' status='Pass'>
+			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
+
+
+					<div class="node-step">Refer</div>
+					<div class='screenshots'>
+						<img width='80' height='40' onerror='this.style.display="none"' data-featherlight='../embedded2.png' src='../embedded2.png'>
+					</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='13' status='pass'>
+
+	<span class='duration right label'>00 00 09.092</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Check the Forget Password flow</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@AC_Android</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='14' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.forgetPasswordButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given tap on forget password button</div>
+
+
+					<div class="node-step">***Tapped successfully***</div>
+		</li>
+		<li test-id='15' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmailIDFP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the invalid email ID in FP</div>
+
+
+					<div class="node-step">***Entered "invalidText" successfully***</div>
+		</li>
+		<li test-id='16' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.tapResetPassword())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And tap on Reset password button</div>
+
+
+					<div class="node-step">***Tapped successfully***</div>
+		</li>
+		<li test-id='17' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateInvalidToastMessage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate the invalid toast message</div>
+
+
+		</li>
+		<li test-id='18' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterValidEmailIDFP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the valid email ID in FP</div>
+
+
+					<div class="node-step">***Entered "mobileac@mailinator.com" successfully***</div>
+		</li>
+		<li test-id='19' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.tapResetPassword())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And tap on Reset password button</div>
+
+
+					<div class="node-step">***Tapped successfully***</div>
+		</li>
+		<li test-id='20' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateResetPassword())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate the Reset password link</div>
+
+
+		</li>
+		<li test-id='21' class='node * Pass' status='Pass'>
+			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
+
+
+					<div class="node-step">Refer</div>
+					<div class='screenshots'>
+						<img width='80' height='40' onerror='this.style.display="none"' data-featherlight='../embedded3.png' src='../embedded3.png'>
+					</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='22' status='pass'>
+
+	<span class='duration right label'>00 00 04.124</span>
 	<div class="bdd-test">
 		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Check the Login functionalites with invalid data</div>
 	</div>
@@ -245,43 +370,44 @@
 		</div>
 	
 	<ul class='steps'>
-		<li test-id='6' class='node when Pass' status='Pass'>
+		<li test-id='23' class='node when Pass' status='Pass'>
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidEmail())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the invalid email ID</div>
 
 
-					<div class="node-step">***Entered: invalid@invalid.cred***</div>
+					<div class="node-step">***Entered "invalid@invalid.cred" successfully***</div>
 		</li>
-		<li test-id='7' class='node when Pass' status='Pass'>
+		<li test-id='24' class='node when Pass' status='Pass'>
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterInvalidPassword())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the invalid password</div>
 
 
-					<div class="node-step">***Entered: test123123***</div>
+					<div class="node-step">***Entered "invalid123123" successfully***</div>
 		</li>
-		<li test-id='8' class='node and Pass' status='Pass'>
+		<li test-id='25' class='node and Pass' status='Pass'>
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.tapLogin())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And tap on login button</div>
 
 
+					<div class="node-step">***Tapped successfully***</div>
 		</li>
-		<li test-id='9' class='node then Pass' status='Pass'>
+		<li test-id='26' class='node then Pass' status='Pass'>
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateLoginToast())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate invalid login toast message</div>
 
 
-					<div class="node-step">***Invalid cred toast appeared successfully***</div>
+					<div class="node-step">***Invalid cred toast validated successfully***</div>
 		</li>
-		<li test-id='10' class='node * Pass' status='Pass'>
+		<li test-id='27' class='node * Pass' status='Pass'>
 			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
 
 
 					<div class="node-step">Refer</div>
 					<div class='screenshots'>
-						<img width='80' height='40' onerror='this.style.display="none"' data-featherlight='../embedded2.png' src='../embedded2.png'>
+						<img width='80' height='40' onerror='this.style.display="none"' data-featherlight='../embedded4.png' src='../embedded4.png'>
 					</div>
 		</li>
 	</ul>
 </div>
-<div class='scenario node' test-id='11' status='pass'>
+<div class='scenario node' test-id='28' status='pass'>
 
-	<span class='duration right label'>00 00 17.305</span>
+	<span class='duration right label'>00 00 19.350</span>
 	<div class="bdd-test">
 		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Check the Login functionalities with valid data</div>
 	</div>
@@ -293,36 +419,37 @@
 		</div>
 	
 	<ul class='steps'>
-		<li test-id='12' class='node when Pass' status='Pass'>
+		<li test-id='29' class='node when Pass' status='Pass'>
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterEmail())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the email ID</div>
 
 
-					<div class="node-step">***Entered: mobileac@mailinator.com***</div>
+					<div class="node-step">***Entered "mobileac@mailinator.com" successfully***</div>
 		</li>
-		<li test-id='13' class='node when Pass' status='Pass'>
+		<li test-id='30' class='node when Pass' status='Pass'>
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.enterPassword())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When enter the password</div>
 
 
-					<div class="node-step">***Entered: test123123***</div>
+					<div class="node-step">***Entered "test123123" successfully***</div>
 		</li>
-		<li test-id='14' class='node and Pass' status='Pass'>
+		<li test-id='31' class='node and Pass' status='Pass'>
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.tapLogin())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And tap on login button</div>
 
 
+					<div class="node-step">***Tapped successfully***</div>
 		</li>
-		<li test-id='15' class='node then Pass' status='Pass'>
+		<li test-id='32' class='node then Pass' status='Pass'>
 			<div class="step-name" title="(com.answerconnect.stepdefinitions.SignInPage.validateSignIn())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then validate signIn page</div>
 
 
 					<div class="node-step">***Sign In validated successfully***</div>
 		</li>
-		<li test-id='16' class='node * Pass' status='Pass'>
+		<li test-id='33' class='node * Pass' status='Pass'>
 			<div class="step-name" title="(AFTER)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>com.answerconnect.stepdefinitions.AfterScenario.getScreenshot(io.cucumber.java.Scenario)</div>
 
 
 					<div class="node-step">Refer</div>
 					<div class='screenshots'>
-						<img width='80' height='40' onerror='this.style.display="none"' data-featherlight='../embedded3.png' src='../embedded3.png'>
+						<img width='80' height='40' onerror='this.style.display="none"' data-featherlight='../embedded5.png' src='../embedded5.png'>
 					</div>
 		</li>
 	</ul>
@@ -371,6 +498,39 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
+						<span class='category-name'>@ValidLoginCheck</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Apr 27, 2023 06:08:43</td>
+										<td class='linked' test-id='28'>Check the Login functionalities with valid data</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
 						<span class='category-name'>@InvalidLoginCheck</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
@@ -393,8 +553,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 26, 2023 08:42:08</td>
-										<td class='linked' test-id='5'>Check the Login functionalites with invalid data</td>
+										<td>Apr 27, 2023 06:08:39</td>
+										<td class='linked' test-id='22'>Check the Login functionalites with invalid data</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -406,12 +566,12 @@
 					<div class='category-heading'>
 						<span class='category-name'>@AC_Android</span>
 						<span class='category-status right'>
-						<span class='label pass'>3</span>
+						<span class='label pass'>5</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 3</span>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 5</span>
 							
 							
 						</div>
@@ -426,18 +586,28 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 26, 2023 08:41:37</td>
+										<td>Apr 27, 2023 06:08:14</td>
 										<td class='linked' test-id='2'>Open the AnswerConnect application</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 									<tr>
-										<td>Apr 26, 2023 08:42:08</td>
-										<td class='linked' test-id='5'>Check the Login functionalites with invalid data</td>
+										<td>Apr 27, 2023 06:08:27</td>
+										<td class='linked' test-id='5'>Check the login screen UI</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 									<tr>
-										<td>Apr 26, 2023 08:42:13</td>
-										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
+										<td>Apr 27, 2023 06:08:29</td>
+										<td class='linked' test-id='13'>Check the Forget Password flow</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+									<tr>
+										<td>Apr 27, 2023 06:08:39</td>
+										<td class='linked' test-id='22'>Check the Login functionalites with invalid data</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+									<tr>
+										<td>Apr 27, 2023 06:08:43</td>
+										<td class='linked' test-id='28'>Check the Login functionalities with valid data</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -469,41 +639,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Apr 26, 2023 08:41:37</td>
+										<td>Apr 27, 2023 06:08:14</td>
 										<td class='linked' test-id='2'>Open the AnswerConnect application</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@ValidLoginCheck</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Apr 26, 2023 08:42:13</td>
-										<td class='linked' test-id='11'>Check the Login functionalities with valid data</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -534,31 +671,31 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>3</div>
+					<div class='panel-lead'>5</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>12</div>
+					<div class='panel-lead'>27</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Apr 26, 2023 08:41:37</div>
+					<div class='panel-lead'>Apr 27, 2023 06:08:13</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Apr 26, 2023 08:42:33</div>
+			 		<div class='panel-lead'>Apr 27, 2023 06:09:03</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 00 56.280</div>
+					<div class='panel-lead'>00 00 49.707</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -584,7 +721,7 @@
 							</tr>
 							<tr>
 								<td>build</td>
-								<td>7.2.2.20230215</td>
+								<td>1.0</td>
 							</tr>
 							<tr>
 								<td>OS</td>
@@ -606,6 +743,15 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
+							<td>@ValidLoginCheck</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
 							<td>@InvalidLoginCheck</td>
 							<td>1</td>
 							<td>0</td>
@@ -616,7 +762,7 @@
 						</tr>
 						<tr>
 							<td>@AC_Android</td>
-							<td>3</td>
+							<td>5</td>
 							<td>0</td>
 							<td>0</td>
 							<td>
@@ -625,15 +771,6 @@
 						</tr>
 						<tr>
 							<td>@OpenApp</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@ValidLoginCheck</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -659,16 +796,16 @@
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 3,
-				passChild: 3,
+				childCount: 5,
+				passChild: 5,
 				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 12,
-				passGrandChild: 12,
+				grandChildCount: 27,
+				passGrandChild: 27,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -680,7 +817,7 @@
 		
 		<script>
 			var timeline = {
-			        "Login Page":53.061
+			        "Login Page":47.853
 			};
 		</script>
 		

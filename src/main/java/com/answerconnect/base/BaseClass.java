@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.answerconnect.utilities.CommonUtilities;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -33,7 +35,7 @@ public class BaseClass extends ExcelRead {
 			System.out.println("App launching");
 			loadPropertyFiles();
 			DesiredCapabilities capabilities = new DesiredCapabilities();
-			if (getData("RealDevice").equalsIgnoreCase("No")) {
+			if (getData("RealDevice").equalsIgnoreCase("Yes")) {
 				capabilities.setCapability("platformName", getData("platformName"));
 				capabilities.setCapability("deviceName", getData("deviceName"));
 				capabilities.setCapability("platformVersion", getData("platformVersion"));
@@ -46,7 +48,7 @@ public class BaseClass extends ExcelRead {
 				capabilities.setCapability("skipUnlock", true);
 				driver = new AndroidDriver<AndroidElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			} else if (getData("CloudDevice").equalsIgnoreCase("Yes")) {
+			} else if (getData("CloudDevice").equalsIgnoreCase("No")) {
 				capabilities.setCapability("device", getData("cloudDeviceName"));
 				capabilities.setCapability("os_version", getData("OS"));
 				capabilities.setCapability("project", getData("projectName"));
@@ -68,6 +70,7 @@ public class BaseClass extends ExcelRead {
 			e.printStackTrace();
 		}
 		System.out.println("App launched");
+		CommonUtilities.log("Application launched sucessfully");
 	}
 
 	public static void loadPropertyFiles() throws IOException {
