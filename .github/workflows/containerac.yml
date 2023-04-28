@@ -1,4 +1,4 @@
-name: Appium Tests on BrowserStack
+name: Java Appium Automation CI
 
 on:
   push:
@@ -8,30 +8,33 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Check if pom.xml exists
+        run: ls -la
       - name: Build with Maven
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
 
   test:
-    needs: build
-    runs-on: ubuntu-latest
+    runs-on: browserstack/android11
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Set up BrowserStack environment
-        run: |
-          echo "BROWSERSTACK_USERNAME=answerconnect_d0BTEv" >> $GITHUB_ENV
-          echo "BROWSERSTACK_ACCESS_KEY=wjqrx6hhPmJcz2k7BH3T" >> $GITHUB_ENV
-          echo "BROWSERSTACK_APP=bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792" >> $GITHUB_ENV
-          echo "BROWSERSTACK_DEVICE=Google Pixel 6 Pro" >> $GITHUB_ENV
-          echo "BROWSERSTACK_OS=13.0" >> $GITHUB_ENV
+      - name: Install ADB
+        run: sudo apt-get update && sudo apt-get install android-tools-adb -y
+      - name: Connect to BrowserStack
+        uses: browserstack/github-actions@master
+        with:
+          username: ${{ secrets.BROWSERSTACK_USERNAME }}
+          accessKey: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
       - name: Install app dependencies
         run: |
           npm install -g appium
@@ -41,10 +44,10 @@ jobs:
       - name: Wait for Appium to start
         run: |
          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
-      - name: 'Running test on BrowserStack'
-        run: node /usr/local/lib/node_modules/npm/index.js
-     # - name: Run Appium tests on BrowserStack
-      #  run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
+      - name: Upload app to BrowserStack
+        run: curl -u ${{ secrets.BROWSERSTACK_USERNAME }}:${{ secrets.BROWSERSTACK_ACCESS_KEY }} -X POST https://api-cloud.browserstack.com/app-automate/upload -F file=@AC.apk
+      - name: Run Appium tests
+        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test --file pom.xml
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
