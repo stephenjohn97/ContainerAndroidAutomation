@@ -32,7 +32,7 @@ jobs:
         uses: browserstack/github-actions@master
         with:
           username: ${{ secrets.BROWSERSTACK_USERNAME }}
-          accessKey: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          access-Key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
       - name: Install app dependencies
         run: |
           npm install -g appium
