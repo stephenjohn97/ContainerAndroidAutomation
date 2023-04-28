@@ -35,7 +35,7 @@ public class BaseClass extends ExcelRead {
 			System.out.println("App launching");
 			loadPropertyFiles();
 			DesiredCapabilities capabilities = new DesiredCapabilities();
-			if (getData("RealDevice").equalsIgnoreCase("Yes")) {
+			if (getData("RealDevice").equalsIgnoreCase("No")) {
 				capabilities.setCapability("platformName", getData("platformName"));
 				capabilities.setCapability("deviceName", getData("deviceName"));
 				capabilities.setCapability("platformVersion", getData("platformVersion"));
@@ -48,7 +48,7 @@ public class BaseClass extends ExcelRead {
 				capabilities.setCapability("skipUnlock", true);
 				driver = new AndroidDriver<AndroidElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			} else if (getData("CloudDevice").equalsIgnoreCase("No")) {
+			} else if (getData("CloudDevice").equalsIgnoreCase("Yes")) {
 				capabilities.setCapability("device", getData("cloudDeviceName"));
 				capabilities.setCapability("os_version", getData("OS"));
 				capabilities.setCapability("project", getData("projectName"));
