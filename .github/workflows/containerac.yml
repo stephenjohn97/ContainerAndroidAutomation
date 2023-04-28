@@ -29,11 +29,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Install BrowserStack CLI
-        run: |
-          curl -s https://cli.browserstack.com/bash -o /tmp/browserstack
-          chmod +x /tmp/browserstack
-          sudo mv /tmp/browserstack /usr/local/bin/browserstack
+      - name: Set up BrowserStack environment
+        run: echo "export BROWSERSTACK_USERNAME=answerconnect_d0BTEv" >> $GITHUB_ENV && echo "export BROWSERSTACK_ACCESS_KEY=wjqrx6hhPmJcz2k7BH3T" >> $GITHUB_ENV
       - name: Install app dependencies
         run: |
           npm install -g appium
@@ -43,12 +40,8 @@ jobs:
       - name: Wait for Appium to start
         run: |
          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
-      - name: Run Appium tests
-        env:
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-        run: |
-          mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test --file pom.xml -Dbs.username=$BROWSERSTACK_USERNAME -Dbs.accessKey=$BROWSERSTACK_ACCESS_KEY
+      - name: Run Appium tests on BrowserStack
+        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
