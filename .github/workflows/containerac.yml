@@ -20,7 +20,7 @@ jobs:
         run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 package --file pom.xml
 
   test:
-    runs-on: browserstack/android11
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
