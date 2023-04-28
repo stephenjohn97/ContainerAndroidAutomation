@@ -28,8 +28,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Install ADB
-        run: sudo apt-get update && sudo apt-get install android-tools-adb -y
       - name: Connect to BrowserStack
         uses: browserstack/github-actions@master
         with:
