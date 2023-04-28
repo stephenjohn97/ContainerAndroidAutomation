@@ -42,7 +42,7 @@ jobs:
         run: |
          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
       - name: 'Running test on BrowserStack'
-        run: node index.js 
+        run: node /usr/local/lib/node_modules/npm/index.js
      # - name: Run Appium tests on BrowserStack
       #  run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
       - name: Archive test results
