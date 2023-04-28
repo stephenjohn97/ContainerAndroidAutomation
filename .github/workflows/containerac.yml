@@ -41,7 +41,8 @@ jobs:
         run: appium &
       - name: Wait for Appium to start
         run: |
-         timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
+          brew install coreutils
+          gtimeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
       - name: Upload app to BrowserStack
         run: curl -u ${{ secrets.BROWSERSTACK_USERNAME }}:${{ secrets.BROWSERSTACK_ACCESS_KEY }} -X POST https://api-cloud.browserstack.com/app-automate/upload -F file=@AC.apk
       - name: Run Appium tests
