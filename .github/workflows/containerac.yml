@@ -26,7 +26,7 @@ jobs:
         with:
           java-version: 11
       - name: Set up BrowserStack environment
-        run: echo "export BROWSERSTACK_USERNAME=answerconnect_d0BTEv" >> $GITHUB_ENV && echo "export BROWSERSTACK_ACCESS_KEY=wjqrx6hhPmJcz2k7BH3T" >> $GITHUB_ENV
+        run: echo "export BROWSERSTACK_USERNAME=answerconnect_d0BTEv" >> $GITHUB_ENV && echo "export BROWSERSTACK_ACCESS_KEY=wjqrx6hhPmJcz2k7BH3T" >> $GITHUB_ENV "export BROWSERSTACK_APP=bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792" >> $GITHUB_ENV && "export BROWSERSTACK_DEVICE=Google Pixel 6 Pro" >> $GITHUB_ENV && "export BROWSERSTACK_OS=13.0" >> $GITHUB_ENV 
       - name: Install app dependencies
         run: |
           npm install -g appium
