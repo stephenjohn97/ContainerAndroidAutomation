@@ -33,7 +33,7 @@ jobs:
         run: echo "export BROWSERSTACK_USERNAME=answerconnect_d0BTEv" >> $GITHUB_ENV && echo "export BROWSERSTACK_ACCESS_KEY=wjqrx6hhPmJcz2k7BH3T" >> $GITHUB_ENV
       - name: Install app dependencies
         run: |
-          npm install -g appium
+          npm install -g npm@latest
           npm install -g browserstack-appautomate
       - name: Upload app file to BrowserStack
         run: browserstack appupload --app ContainerAndroidAutomation/AC.apk
