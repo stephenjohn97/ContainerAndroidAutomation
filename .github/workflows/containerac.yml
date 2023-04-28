@@ -41,8 +41,10 @@ jobs:
       - name: Wait for Appium to start
         run: |
          timeout 60s bash -c 'until [[ $(lsof -t -i :4723) ]]; do sleep 1; done'
-      - name: Run Appium tests on BrowserStack
-        run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
+      - name: 'Running test on BrowserStack'
+        run: node index.js 
+     # - name: Run Appium tests on BrowserStack
+      #  run: mvn -B -Dmaven.compiler.source=11 -Dmaven.compiler.target=11 test -P browserstack --file pom.xml
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
