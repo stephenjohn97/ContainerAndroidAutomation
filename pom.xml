@@ -22,10 +22,10 @@
 		<profile>
 			<id>browserstack</id>
 			<properties>
-				<browserstack.username>answerconnect_d0BTEv</browserstack.username>
-				<browserstack.accessKey>wjqrx6hhPmJcz2k7BH3T</browserstack.accessKey>
-				<browserstack.app>bs://9e835a485b0a05ee7e844cdd7d1b565762a5c792</browserstack.app>
-				<browserstack.device>Google Pixel 6 Pro</browserstack.device>
+				<browserstack.username>${env.BROWSERSTACK_USERNAME}</browserstack.username>
+				<browserstack.accessKey>${env.BROWSERSTACK_ACCESS_KEY}</browserstack.accessKey>
+				<browserstack.app>${env.BROWSERSTACK_APP}</browserstack.app>
+				<browserstack.device>${env.BROWSERSTACK_DEVICE}</browserstack.device>
 				<browserstack.os>${env.BROWSERSTACK_OS}</browserstack.os>
 				<browserstack.os_version>${env.BROWSERSTACK_OS_VERSION}</browserstack.os_version>
 				<browserstack.build>${env.BROWSERSTACK_BUILD}</browserstack.build>
