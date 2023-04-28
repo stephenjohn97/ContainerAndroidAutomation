@@ -8,10 +8,16 @@
 	<repositories>
 		<repository>
 			<id>browserstack-repo</id>
-			<name>BrowserStack Repository</name>
 			<url>https://repository.browserstack.com/releases</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
 		</repository>
 	</repositories>
+
 	<profiles>
 		<profile>
 			<id>browserstack</id>
