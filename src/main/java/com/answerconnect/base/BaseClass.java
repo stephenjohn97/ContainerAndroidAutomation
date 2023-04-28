@@ -27,7 +27,7 @@ public class BaseClass extends ExcelRead {
 	static ServerSocket socket;
 	static int port;
 	public static String userName = getData("userName");
-	public static String accessKey = getData("accessKey");
+	public static String access_Key = getData("accessKey");
 
 	public static void appLaunch() throws InterruptedException, IOException {
 		try {
@@ -61,7 +61,7 @@ public class BaseClass extends ExcelRead {
 				capabilities.setCapability("fullReset", true);
 				capabilities.setCapability("newCommandTimeout", 120);
 				driver = new AndroidDriver<AndroidElement>(
-						new URL("https://" + userName + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub"),
+						new URL("https://" + userName + ":" + access_Key + "@hub-cloud.browserstack.com/wd/hub"),
 						capabilities);
 				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			}
