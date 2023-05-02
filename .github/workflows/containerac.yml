@@ -34,7 +34,7 @@ jobs:
       - name: Install ADB
         run: brew install --cask android-platform-tools
       - name: Update PATH environment variable
-        run: echo 'export PATH="$PATH:/usr/local/share/android-sdk/platform-tools"' >> $GITHUB_ENV
+        run: echo 'export PATH="$PATH:/Users/stefan/Library/Android/sdk/platform-tools"' >> $GITHUB_ENV
       - name: Connect to Android device
         run: |
           adb start-server
