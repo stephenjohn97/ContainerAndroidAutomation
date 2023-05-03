@@ -30,10 +30,10 @@ jobs:
           java-version: 11
       - name: Set up Android environment
         run: echo "export ANDROID_HOME=/Users/stefan/Library/Android/sdk" >> $GITHUB_ENV
-      - name: Install ADB
-        run: brew install --cask android-platform-tools
       - name: Update PATH environment variable
         run: echo 'export PATH="$PATH:/Users/stefan/Library/Android/sdk/platform-tools"' >> $GITHUB_ENV
+      - name: Install ADB
+        run: brew install --cask android-platform-tools
       - name: Connect to Android device
         run: |
           adb start-server
