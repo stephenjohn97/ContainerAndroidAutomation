@@ -12,13 +12,13 @@ import io.cucumber.java.en.When;
 
 public class SignInPage {
 
-	// Scenario: Open the AnswerConnect application
+// Scenario: Open the AnswerConnect application
 	@Given("open the applicaton")
 	public void openApp() throws InterruptedException, IOException {
 		BaseClass.appLaunch();
 	}
 
-	//******** Scenario: Check the login screen UI*********
+// ******** Scenario: Check the login screen UI*********
 	@Given("validate the AnswerConnect logo")
 	public void acLogo() {
 		SignIn.acLogo();
@@ -80,9 +80,25 @@ public class SignInPage {
 		SignIn.validateResetPassword();
 	}
 
+// ***INVALID CRED SCENARIO***
+	@When("enter the wrong email ID")
+	public void enterWrongEmail() {
+		SignIn.enterWrongEmail();
+	}
+
+	@When("enter the wrong password")
+	public void enterWrongPassword() {
+		SignIn.enterWrongPassword();
+	}
+
+	@Then("validate the wrong login toast message")
+	public void validateWrongLoginToast() {
+		SignIn.validateWrongLoginToast();
+	}
+
 // ***INVALID SCENARIO***
 	@When("enter the invalid email ID")
-	public void enterInvalidEmail() {
+	public void enterInvalidEmail() throws InterruptedException {
 		SignIn.enterInvalidEmail();
 	}
 
@@ -91,9 +107,9 @@ public class SignInPage {
 		SignIn.enterInvalidPassword();
 	}
 
-	@Then("validate invalid login toast message")
-	public void validateLoginToast() {
-		SignIn.validateLoginToast();
+	@Then("validate the invalid login toast message")
+	public void validateInvalidToast() {
+		SignIn.validateInvalidLoginToast();
 	}
 
 // ***VALID SCENARIO***
@@ -110,6 +126,11 @@ public class SignInPage {
 	@And("tap on login button")
 	public void tapLogin() throws InterruptedException {
 		SignIn.tapLoginButton();
+	}
+
+	@And("skip tour page")
+	public void skipTour() throws InterruptedException {
+		SignIn.skipTourPage();
 	}
 
 	@Then("validate signIn page")

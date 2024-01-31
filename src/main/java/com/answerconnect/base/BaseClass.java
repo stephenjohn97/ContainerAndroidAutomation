@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.answerconnect.utilities.CommonUtilities;
@@ -35,7 +36,7 @@ public class BaseClass extends ExcelRead {
 			System.out.println("App launching");
 			loadPropertyFiles();
 			DesiredCapabilities capabilities = new DesiredCapabilities();
-			if (getData("RealDevice").equalsIgnoreCase("No")) {
+			if (getData("RealDevice").equalsIgnoreCase("Yes")) {
 				capabilities.setCapability("platformName", getData("platformName"));
 				capabilities.setCapability("deviceName", getData("deviceName"));
 				capabilities.setCapability("platformVersion", getData("platformVersion"));
@@ -48,21 +49,22 @@ public class BaseClass extends ExcelRead {
 				capabilities.setCapability("skipUnlock", true);
 				driver = new AndroidDriver<AndroidElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), capabilities);
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			} else if (getData("CloudDevice").equalsIgnoreCase("Yes")) {
-				capabilities.setCapability("device", getData("cloudDeviceName"));
-				capabilities.setCapability("os_version", getData("OS"));
-				capabilities.setCapability("project", getData("projectName"));
-				capabilities.setCapability("build", getData("buildName"));
-				capabilities.setCapability("name", getData("testName"));
-				capabilities.setCapability("app", getData("appID"));
-				capabilities.setCapability("autoGrantPermissions", true);
-				capabilities.setCapability("autoAcceptAlerts", true);
-				capabilities.setCapability("noReset", false);
-				capabilities.setCapability("fullReset", true);
-				capabilities.setCapability("newCommandTimeout", 120);
-				driver = new AndroidDriver<AndroidElement>(
-						new URL("https://" + userName + ":" + access_Key + "@hub-cloud.browserstack.com/wd/hub"),
-						capabilities);
+			} else if (getData("CloudDevice").equalsIgnoreCase("SauceLabs")) {
+				MutableCapabilities caps = new MutableCapabilities();
+				caps.setCapability("platformName", "Android");
+				caps.setCapability("appium:app", "storage:filename=3620.apk"); // The filename of the mobile app
+				caps.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
+				caps.setCapability("appium:deviceOrientation", "portrait");
+				caps.setCapability("appium:platformVersion", "12.0");
+				caps.setCapability("appium:automationName", "Uiautomator2");
+				MutableCapabilities sauceOptions = new MutableCapabilities();
+				sauceOptions.setCapability("username", "oauth-johnstephen3780-b8419");
+				sauceOptions.setCapability("accessKey", "c490038e-7bd9-4751-90d6-8c0f8c4aee25");
+				sauceOptions.setCapability("build", "appium-build-B6XIT");
+				sauceOptions.setCapability("name", "<your test name>");
+				capabilities.setCapability("sauce:options", sauceOptions);
+				URL url = new URL("https://ondemand.eu-central-1.saucelabs.com:443/wd/hub");
+				driver = new AndroidDriver<AndroidElement>(url, caps);
 				driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			}
 

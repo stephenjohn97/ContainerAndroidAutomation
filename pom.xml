@@ -5,6 +5,8 @@
 	<groupId>com.answerconnect.android</groupId>
 	<artifactId>ANCT_Android_BDD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
 
 	<profiles>
 		<profile>
@@ -20,6 +22,7 @@
 			</properties>
 		</profile>
 	</profiles>
+
 
 	<build>
 		<plugins>
@@ -129,4 +132,7 @@
 			<version>5.0.7</version>
 		</dependency>
 	</dependencies>
+
 </project>
+
+

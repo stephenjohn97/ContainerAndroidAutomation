@@ -25,16 +25,24 @@ Feature: Login Page
     And tap on Reset password button
     Then validate the Reset password link
 
+  @WrongCredentialsCheck
+  Scenario: Check the Login functionalites with wrong credentials
+    When enter the wrong email ID
+    When enter the wrong password
+    And tap on login button
+    Then validate the wrong login toast message
+    
   @InvalidLoginCheck
   Scenario: Check the Login functionalites with invalid data
     When enter the invalid email ID
     When enter the invalid password
     And tap on login button
-    Then validate invalid login toast message
+    Then validate the invalid login toast message
 
   @ValidLoginCheck
   Scenario: Check the Login functionalities with valid data
     When enter the email ID
     When enter the password
     And tap on login button
+    And skip tour page
     Then validate signIn page

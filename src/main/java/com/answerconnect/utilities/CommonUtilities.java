@@ -127,6 +127,7 @@ public class CommonUtilities extends BaseClass {
 	}
 
 	public static WebElement findXpath(String element) {
+		//WebElement l = 	.findElementsByAndroidUIAutomator("new UiSelector().resourceId('')").get(0);
 		return driver.findElement(By.xpath(prop(element)));
 	}
 
@@ -385,5 +386,6 @@ public class CommonUtilities extends BaseClass {
 	public static void log(String comment) {
 		ExtentCucumberAdapter.addTestStepLog("***" + comment + "***");
 	}
+	
 
 }
